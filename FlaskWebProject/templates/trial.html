@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Draw a polyline given many coordinates</title>
+
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+<style type="text/css">
+html { height: 100% }
+body { height: 100%; margin: 0; padding: 0 }
+#map_canvas { height: 100% }
+</style>
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+
+<script type="text/javascript">
+    function initialize() {
+        var homeLatlng = new google.maps.LatLng(51.476706,0);
+        var myOptions = {
+            zoom: 15,
+            center: homeLatlng,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+
+        // add start marker
+        var homeMarker = new google.maps.Marker({
+            position: new google.maps.LatLng(51.482238,0.001581), 
+            map: map, 
+            icon: 'http://maps.google.co.uk/intl/en_ALL/mapfiles/ms/micons/green-dot.png'
+        });
+
+        // add end marker
+        var homeMarker = new google.maps.Marker({
+            position: new google.maps.LatLng(51.481577,-0.0022), 
+            map: map, 
+            icon: 'http://maps.google.co.uk/intl/en_ALL/mapfiles/ms/micons/red-dot.png'
+        });
+
+        // create an array of coordinates
+        var arrCoords = [
+            new google.maps.LatLng(51.482238,0.001581),
+            new google.maps.LatLng(51.473364,0.011966),
+            new google.maps.LatLng(51.471974,-0.000651),
+            new google.maps.LatLng(51.472108,-0.002196),
+            new google.maps.LatLng(51.474995,-0.003827),
+            new google.maps.LatLng(51.476492,-0.005629),
+            new google.maps.LatLng(51.477855,-0.006058),
+            new google.maps.LatLng(51.478443,-0.007045),
+            new google.maps.LatLng(51.479298,-0.007861),
+            new google.maps.LatLng(51.481202,-0.002136),
+            new google.maps.LatLng(51.481577,-0.0022)
+        ];
+
+        // draw the route on the map            
+        var route = new google.maps.Polyline({
+            path: arrCoords,
+            strokeColor: "#00FF00",
+            strokeOpacity: 1.0,
+            strokeWeight: 4,
+            geodesic: false,
+            map: map
+        }); 
+    }
+
+    google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+</head>
+<body>
+    <h1>GROOOVY</h1>
+  <div id="map_canvas"></div>
+</body>
+</html>

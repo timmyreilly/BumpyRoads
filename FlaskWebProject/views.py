@@ -15,3 +15,7 @@ def home():
         title='Home Page',
         year=datetime.now().year,
     )
+    
+@app.route('/t')
+def trial():
+    return render_template('trial.html')
