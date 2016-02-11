@@ -5,6 +5,7 @@ Routes and views for the flask application.
 from datetime import datetime
 from flask import render_template
 from FlaskWebProject import app
+from tokens import * 
 
 @app.route('/')
 @app.route('/home')
@@ -22,7 +23,9 @@ def trial():
 
 @app.route('/b')
 def bingtrial():
-    return render_template('bingtrial.html')
+    return render_template(
+        'bingtrial.html',
+        key=BING_API_KEY)
     
 '''
 
