@@ -53,6 +53,13 @@ body { height: 100%; margin: 0; padding: 0 }
             new google.maps.LatLng(51.478443,-0.007045),
         ]
         
+        var smallchangecolor = [
+            new google.maps.LatLng(51.474995,-0.003830),
+            new google.maps.LatLng(51.475238,-0.003827),
+            new google.maps.LatLng(51.476443,-0.003827),
+            new google.maps.LatLng(51.478995,-0.003827)
+        ]
+        
         
 
         // draw the route on the map            
@@ -64,6 +71,15 @@ body { height: 100%; margin: 0; padding: 0 }
             geodesic: false,
             map: map
         }); 
+        
+        var onecolorroute = new google.maps.Polyline({
+            path: smallchangecolor,
+            strokeColor: "#2ff1ed",
+            strokeOpacity: 1.0,
+            strokeWeight: 3,
+            geodesic: false,
+            map: map 
+        })
         
         var blueroute = new google.maps.Polyline({
             path: blueCoords,

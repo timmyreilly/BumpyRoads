@@ -19,3 +19,20 @@ def home():
 @app.route('/t')
 def trial():
     return render_template('trial.html')
+
+@app.route('/b')
+def bingtrial():
+    return render_template('bingtrial.html')
+    
+'''
+
+return list of 
+lat long that and severity number 
+
+From 1 - 10 how bumpy was the road? 
+On this section? 
+
+return 
+
+'''
+
