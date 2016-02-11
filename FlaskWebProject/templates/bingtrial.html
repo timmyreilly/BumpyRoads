@@ -14,19 +14,24 @@
          function GetMap()
          {
             // Initialize the map
-            map = new Microsoft.Maps.Map(document.getElementById("mapDiv"),{credentials:"{{ key }}"}); 
+            map = new Microsoft.Maps.Map(document.getElementById("mapDiv"),{
+                credentials:"{{ key }}",
+                center: new Microsoft.Maps.Location(37.767695,-122.445832), 
+                zoom: 13
+                }); 
 
             // Create the locations
-            var location1 = new Microsoft.Maps.Location(37.767695,-122.445832);
-            var location2 = new Microsoft.Maps.Location(37.775454,-122.443952);
-            var location3 = new Microsoft.Maps.Location(37.784558,-122.398564);
-            var location4 = new Microsoft.Maps.Location(37.792062, -122.403697);
-            var location5 = new Microsoft.Maps.Location(37.792897, -122.416619);
+            var location1 = new Microsoft.Maps.Location(37.767111,-122.445811);
+            var location2 = new Microsoft.Maps.Location(37.775111,-122.443911);
+            var location3 = new Microsoft.Maps.Location(37.784111,-122.398511);
+            var location4 = new Microsoft.Maps.Location(37.792111, -122.403611);
+            var location5 = new Microsoft.Maps.Location(37.792111, -122.416611);
 
 
             // Create a polyline
             var lineVertices = new Array(location1, location2, location3, location4, location5);
-            var line = new Microsoft.Maps.Polyline(lineVertices);
+            var line = new Microsoft.Maps.Polyline(lineVertices,{
+                strokeColor:new Microsoft.Maps.Color(200, 100, 0, 100), strokeThickness:2});
 
             // Add the polyline to the map
             map.entities.push(line);
