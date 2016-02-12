@@ -21,11 +21,26 @@ def home():
 def trial():
     return render_template('trial.html')
 
+python_data = {
+    'list_a': [37.767111,-122.445811],
+    'list_b': [37.792111, -122.403611]
+}
+ 
+
 @app.route('/b')
 def bingtrial():
+    data = [
+        {
+            "list_a": [37.767111,-122.445811] 
+            "list_b": [37.792111, -122.403611]
+        }
+    ]
     return render_template(
         'bingtrial.html',
+        data=data,
         key=BING_API_KEY)
+        
+        
     
 '''
 

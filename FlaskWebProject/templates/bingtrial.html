@@ -19,8 +19,29 @@
                 center: new Microsoft.Maps.Location(37.767695,-122.445832), 
                 zoom: 13
                 }); 
+            
+           console.log('{{ data|tojson|safe }}');
+           var x = JSON.parse('{{ data|tojson|safe }}');
+           console.log(x);
+           console.log(x['list_a'][0]);
+            
+            var bluedota = new Microsoft.Maps.Location(x['list_a'][0], x['list_a'][1]);
+            var bluedotb = new Microsoft.Maps.Location(x['list_b'][0], x['list_b'][1]);
+            var bluedotc = new Microsoft.Maps.Location(37.775111,-122.443911);
+            
+            var lineVert = new Array(bluedota, bluedotc, bluedotb);
+            
+            
+            var linetwo = new Microsoft.Maps.Polyline(lineVert,{
+                strokeColor:new Microsoft.Maps.Color(200, 200, 0, 100),
+                strokeThickness:5
+            });
+            
+            
 
             // Create the locations
+            
+            
             var location1 = new Microsoft.Maps.Location(37.767111,-122.445811);
             var location2 = new Microsoft.Maps.Location(37.775111,-122.443911);
             var location3 = new Microsoft.Maps.Location(37.784111,-122.398511);
@@ -31,10 +52,14 @@
             // Create a polyline
             var lineVertices = new Array(location1, location2, location3, location4, location5);
             var line = new Microsoft.Maps.Polyline(lineVertices,{
-                strokeColor:new Microsoft.Maps.Color(200, 100, 0, 100), strokeThickness:2});
+                strokeColor:new Microsoft.Maps.Color(200, 100, 0, 100), 
+                strokeThickness:2
+                });
 
             // Add the polyline to the map
             map.entities.push(line);
+            
+            map.entities.push(linetwo);
 
          }
 
