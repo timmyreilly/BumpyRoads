@@ -3,7 +3,7 @@ Routes and views for the flask application.
 """
 
 from datetime import datetime
-from flask import render_template
+from flask import render_template, Response 
 from FlaskWebProject import app
 from tokens import *
 from helper import *  
@@ -15,8 +15,9 @@ from helper import *
 @app.route('/c')
 def bingerino():
     data = get_data()
+    print data 
     return render_template(
-        'bingtrial.html',
+        'bingerino.html',
         data=data,
         key=BING_API_KEY)
         
