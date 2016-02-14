@@ -23,7 +23,7 @@ def bingerino():
     return render_template(
         'bingerino.html',
         data=data,
-        key=BING_API_KEY)
+        key=token)
         
 
 @app.route('/b')
@@ -38,7 +38,7 @@ def bingtrial():
     return render_template(
         'bingtrial.html',
         data=data,
-        key=BING_API_KEY)
+        key=token)
 
 
 @app.route('/')
@@ -48,6 +48,7 @@ def home():
     return render_template(
         'index.html',
         title='Home Page',
+        info=token[1:6],
         year=datetime.now().year,
     )
     
