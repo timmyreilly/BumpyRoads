@@ -5,11 +5,15 @@ Routes and views for the flask application.
 from datetime import datetime
 from flask import render_template, Response 
 from FlaskWebProject import app
-from tokens import *
 from helper import *  
+import os
 
+token = os.getenv('BING_MAP_TOKEN')
 
-
+if token == None:
+    print 'here'
+    from tokens import *  
+    token = BING_API_KEY
 
 
 @app.route('/c')
@@ -21,8 +25,6 @@ def bingerino():
         data=data,
         key=BING_API_KEY)
         
-
-
 
 @app.route('/b')
 def bingtrial():
