@@ -2,8 +2,21 @@
 # or local stoge. 
 
 from helper import * 
+import azure 
 
-if __name__ == "__main__":
-    x = get_lat_long_dict(1)
-    
+'''
+Collect random lat long and bumpiness rating
+
+Send to Azure Table storage 
+
+'''
+
+segment = Entity()
+segment.PartitionKey = 'default'
+segment.RowKey = '1'
+segment.latA = entry['latA']
+segment.longA = entry['longA']
+segment.latB = entry['latB']
+segment.longB = entry['longB']
+segment.colorKey = entry['color']
 
