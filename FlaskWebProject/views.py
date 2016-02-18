@@ -15,6 +15,14 @@ if token == None:
     from tokens import *  
     token = BING_API_KEY
 
+@app.route('/e')
+def bingerine():
+    data = get_lat_long_dict(6)
+    print data 
+    return render_template(
+        'bingerino.html',
+        data=data,
+        key=token)
 
 @app.route('/c')
 def bingerino():
