@@ -10,6 +10,11 @@ if TABLE_STORAGE_KEY == None:
     TABLE_STORAGE_KEY = TABLE_STORAGE_ACCESS_KEY
     STORAGE_NAME = STORAGE_ACCOUNT_NAME
 
+def connect_to_service():
+    table_service = TableService(account_name=STORAGE_ACCOUNT_NAME, account_key=TABLE_STORAGE_KEY)
+    print TableService
+    return table_service 
+
 
 def get_random_lat():
     return random.uniform(30,40)
@@ -23,19 +28,21 @@ def get_random_color_list():
 def get_random_color_int():
     return random.randint(0,7)
     
-def load_table(table_service, max=10, table_name='test', partitionKey='default'):
+def load_table(max=10, table_service=connect_to_service(), table_name='test', partitionKey='default'):
     for i in range(max):
         entry = create_entry() 
         insert_entry_to_azure(table_service, i, entry, table_name='test', partitionKey='default')
         print entry 
-        
+
+def clear_table(table_service=connect_to_service(), table_name='test', partitionKey='default'):
+    for i in range(10):
+        table_service.delete_entity(table_name, partitionKey, i)
     
 def get_table_list(table_service, max=10, table_name='test', partitionKey='default'):
     x = table_service.query_entities(table_name)
     print(x)
     return x 
 
-def get_table_list()
     
 def get_lat_long_random(x):
     list = []
@@ -132,7 +139,4 @@ def delete_entity(table_service, rowKey, table_name='test', partitionKey='defaul
 def delete_table(name):
     table_service.delete_table('tasktable')
     
-def connect_to_service():
-    table_service = TableService(account_name=STORAGE_ACCOUNT_NAME, account_key=TABLE_STORAGE_KEY)
-    print TableService
-    return table_service 
+
