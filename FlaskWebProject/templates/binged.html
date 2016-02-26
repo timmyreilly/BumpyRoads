@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+   <head>
+      <title></title>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+      <script type="text/javascript" src="http://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0"></script>
+
+      <script type="text/javascript">
+
+          var map = null;
+
+
+         function GetMap()
+         {
+             
+            var y = JSON.parse('{{ data|safe }}');
+            // Initialize the map
+            
+            map = new Microsoft.Maps.Map(document.getElementById("mapDiv"),{
+                credentials:"{{ key }}",
+                center: new Microsoft.Maps.Location(y[0][0],y[0][1]), 
+                zoom: 13
+                }); 
+            
+           
+           
+           
+           console.log(y);
+           
+           for( index = 0; index < y.length; index++ ){
+               lOne = new Microsoft.Maps.Location(y[index][0], y[index][1]);
+               lTwo = new Microsoft.Maps.Location(y[index][2], y[index][3]);
+               console.log(lOne);
+               var lineV = new Array(lOne, lTwo);
+               //console.log(y[index][4])
+               var pLine = new Microsoft.Maps.Polyline(lineV, {
+                   strokeColor: new Microsoft.Maps.Color(y[index][5], y[index][6], y[index][7], 100),
+                   strokeThickness: 3
+               });
+               map.entities.push(pLine)
+           }
+
+         }
+
+
+      </script>
+   </head>
+   <body onload="GetMap();">
+      <div id='mapDiv' style="position:relative; width:700px; height:700px;"></div>
+   </body>
+</html>
+

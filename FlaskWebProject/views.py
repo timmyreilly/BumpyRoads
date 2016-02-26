@@ -14,6 +14,20 @@ if token == None:
     print 'here'
     from tokens import *  
     token = BING_API_KEY
+    
+    
+@app.route('/d')
+def binged():
+    print 'here'   
+    data = get_json_list()
+    jdata = json.dumps(data)
+   
+    print type(jdata)
+    return render_template(
+        'binged.html',
+        data=jdata,
+        key=token 
+    )
 
 @app.route('/e')
 def bingerine():

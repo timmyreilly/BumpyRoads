@@ -23,6 +23,20 @@ def get_random_color_list():
 def get_random_color_int():
     return random.randint(0,7)
     
+def load_table(table_service, max=10, table_name='test', partitionKey='default'):
+    for i in range(max):
+        entry = create_entry() 
+        insert_entry_to_azure(table_service, i, entry, table_name='test', partitionKey='default')
+        print entry 
+        
+    
+def get_table_list(table_service, max=10, table_name='test', partitionKey='default'):
+    x = table_service.query_entities(table_name)
+    print(x)
+    return x 
+
+def get_table_list()
+    
 def get_lat_long_random(x):
     list = []
     for i in range(0,x): 
@@ -111,6 +125,9 @@ def create_table(name, table_service):
     table_service.create_table('tasktable')
     '''
     table_service.create_table(name)
+    
+def delete_entity(table_service, rowKey, table_name='test', partitionKey='default'):
+    table_service.delete_entity(table_name, partitionKey, rowKey)
 
 def delete_table(name):
     table_service.delete_table('tasktable')
