@@ -34,8 +34,9 @@ def load_table(max=10, table_service=connect_to_service(), table_name='test', pa
         insert_entry_to_azure(table_service, i, entry, table_name='test', partitionKey='default')
         print entry 
 
-def clear_table(table_service=connect_to_service(), table_name='test', partitionKey='default'):
-    for i in range(10):
+def clear_table(max=10, table_service=connect_to_service(), table_name='test', partitionKey='default'):
+    for i in range(max):
+        print i 
         table_service.delete_entity(table_name, partitionKey, i)
     
 def get_table_list(table_service, max=10, table_name='test', partitionKey='default'):
