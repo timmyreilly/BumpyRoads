@@ -31,7 +31,7 @@ def get_json_list(entity_list=get_table_list()):
         t = (entity_list[i].latA, entity_list[i].longA, entity_list[i].latB, entity_list[i].longB, entity_list[i].colorKey, c[0], c[1], c[2])
         response.append(t)
         i += 1 
-    print response 
+    # print response 
     return response 
     
 

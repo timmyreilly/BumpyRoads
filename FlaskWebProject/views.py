@@ -11,18 +11,14 @@ import os
 token = os.getenv('BING_MAP_TOKEN')
 
 if token == None:
-    print 'here'
     from tokens import *  
     token = BING_API_KEY
     
     
 @app.route('/d')
-def binged():
-    print 'here'   
+def binged():   
     data = get_json_list()
     jdata = json.dumps(data)
-   
-    print type(jdata)
     return render_template(
         'binged.html',
         data=jdata,
@@ -32,7 +28,7 @@ def binged():
 @app.route('/e')
 def bingerine():
     data = get_lat_long_dict(6)
-    print data 
+    # print data 
     return render_template(
         'bingerino.html',
         data=data,

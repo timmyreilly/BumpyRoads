@@ -17,10 +17,10 @@ def connect_to_service():
 
 
 def get_random_lat():
-    return random.uniform(30,40)
+    return random.uniform(37,38)
     
 def get_random_long():
-    return random.uniform(120,140)
+    return random.uniform(-122,-123)
     
 def get_random_color_list():
     return [random.randint(50,100), random.randint(50,150), random.randint(50,200), random.randint(100,200)]

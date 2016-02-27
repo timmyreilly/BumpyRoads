@@ -20,7 +20,7 @@
             map = new Microsoft.Maps.Map(document.getElementById("mapDiv"),{
                 credentials:"{{ key }}",
                 center: new Microsoft.Maps.Location(y[0][0],y[0][1]), 
-                zoom: 13
+                zoom: 10
                 }); 
             
            
@@ -31,7 +31,7 @@
            for( index = 0; index < y.length; index++ ){
                lOne = new Microsoft.Maps.Location(y[index][0], y[index][1]);
                lTwo = new Microsoft.Maps.Location(y[index][2], y[index][3]);
-               console.log(lOne);
+               //console.log(lOne);
                var lineV = new Array(lOne, lTwo);
                //console.log(y[index][4])
                var pLine = new Microsoft.Maps.Polyline(lineV, {
