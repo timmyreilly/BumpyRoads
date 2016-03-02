@@ -18,6 +18,7 @@ tokens.py
 
 # Auto-generated virtual environments
 /env/
+/build/
 
 # Auto-generated web.config
 /web.config
