@@ -16,7 +16,7 @@ tokens.py
 *.user
 *.sln.docstates
 
-# Auto-generated virtual environment
+# Auto-generated virtual environments
 /env/
 
 # Auto-generated web.config
