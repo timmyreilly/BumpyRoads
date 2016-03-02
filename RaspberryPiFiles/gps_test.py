@@ -12,6 +12,7 @@ oldLon = None
 
 while True:
     for i in range(MAX):
+        time.sleep(1.0)
         report = session.next()
         if report.keys()[0] == 'epx':
             lat = float(report['lat'])
@@ -20,7 +21,9 @@ while True:
                 oldLat = lat
                 oldLon = lon 
             entry = create_entry(oldLat, oldLon, lat, lon, get_random_color_int())
+            oldLat = lat 
+            oldLon = lon 
             insert_or_replace_entity_from_pi_azure(table_service, i, entry, 'test', 'default')
             print("lat=%f\tlon=%f\ttime=%s" % (lat, lon, report['time']))
             
-            time.sleep(0.5)
+            
