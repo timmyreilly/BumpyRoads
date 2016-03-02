@@ -3,6 +3,7 @@ __pycache__/
 *.pyc
 
 tokens.py 
+*tokens.py
 
 # PTVS analysis
 .ptvs/
