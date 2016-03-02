@@ -13,7 +13,7 @@ oldLon = None
 while True:
     for i in range(MAX):
         report = session.next()
-        if report.keys()[0] = 'epx':
+        if report.keys()[0] == 'epx':
             lat = float(report['lat'])
             lon = float(report['lon'])
             if oldLat = None:
