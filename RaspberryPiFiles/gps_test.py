@@ -16,11 +16,11 @@ while True:
         if report.keys()[0] == 'epx':
             lat = float(report['lat'])
             lon = float(report['lon'])
-            if oldLat = None:
+            if oldLat == None:
                 oldLat = lat
                 oldLon = lon 
             entry = create_entry(oldLat, oldLon, lat, lon, get_random_color_int())
-            insert_or_replace_entity_to_azure(table_service, i, entry, 'test', 'default')
+            insert_or_replace_entity_from_pi_azure(table_service, i, entry, 'test', 'default')
             print("lat=%f\tlon=%f\ttime=%s" % (lat, lon, report['time']))
             
             time.sleep(0.5)
