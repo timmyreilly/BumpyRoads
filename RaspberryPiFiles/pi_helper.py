@@ -30,7 +30,7 @@ def get_random_color_int():
     
 def load_table(max=10, table_service=connect_to_service(), table_name='test', partitionKey='default'):
     for i in range(max):
-        entry = create_entry() 
+        entry = create_random_entry() 
         insert_entry_to_azure(table_service, i, entry, table_name='test', partitionKey='default')
         print entry 
 
@@ -76,7 +76,7 @@ def get_entry(table_service, rowKey, table_name='test', partitionKey='default'):
     print x.RowKey
     return x 
 
-def create_entry():
+def create_random_entry():
     x = {
         'latA':get_random_lat(),
         'longA':get_random_long(),
@@ -85,8 +85,18 @@ def create_entry():
         'color': get_random_color_int()
     }
     return x 
+def create_entry(latA, lonA, latB, lonB, bumpiness):
+    x = {
+        'latA':latA,
+        'longA':lonA,
+        'latB':latB,
+        'longB':lonB,
+        'color': bumpiness
+    }
+    return x 
 
-def insert_or_update_entity_to_azure(table_service, rowKey, entry, table_name='test', partitionKey='default'):
+
+def insert_or_replace_entity_to_azure(table_service, rowKey, entry, table_name='test', partitionKey='default'):
     '''
     takes table service
     
@@ -103,7 +113,26 @@ def insert_or_update_entity_to_azure(table_service, rowKey, entry, table_name='t
     segment.colorKey = str(entry['color'])
 
     print segment
-    table_service.insert_or_replace_entity(table_name, segment)    
+    table_service.insert_or_replace_entity(table_name, partitionKey, rowKey, segment) 
+    
+def update_entity_to_azure(table_service, rowKey, entry, table_name='test', partitionKey='default'):
+    '''
+    takes table service
+    
+    Takes a list 
+    Uploads to azure table storage 
+    '''
+    segment = Entity()
+    segment.PartitionKey = partitionKey
+    segment.RowKey = str(rowKey)
+    segment.latA = str(entry['latA'])
+    segment.longA = str(entry['longA'])
+    segment.latB = str(entry['latB'])
+    segment.longB = str(entry['longB'])
+    segment.colorKey = str(entry['color'])
+
+    print segment
+    table_service.update_entity(table_name, segment)     
 
 def insert_entry_to_azure(table_service, rowKey, entry, table_name='test', partitionKey='default'):
     '''
