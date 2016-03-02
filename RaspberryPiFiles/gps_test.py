@@ -5,7 +5,7 @@ session = gps()
 session.stream(WATCH_ENABLE|WATCH_NEWSTYLE)
 
 table_service=connect_to_service()
-MAX = 20 
+MAX = 200
 
 oldLat = None
 oldLon = None 
