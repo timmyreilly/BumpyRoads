@@ -14,14 +14,10 @@ while True:
     z = analog_read(2)
     if x < 450:
         print("left \tX=%d" % (x))
-        print (x)
     elif x > 550:
         print("right \tX=%d" % (x))
-        print x 
     elif y < 450:
         print("Back \tY=%d" % (y) )
-        print y 
     elif y > 550:
         print("Forward \tY=%d" % (y))
-        print y 
     time.sleep(0.2)
