@@ -19,6 +19,12 @@ def analog_read(channel):
     r = spi.xfer2([1, (8 + channel) << 4, 0])
     adc_out = ((r[1]&3) << 8) + r[2]
     return adc_out
+    
+def get_normalized_number(lists, x, y, z):
+    lists.pop()
+    lists.insert(0, [x,y,z])
+    average = 0 
+    return 
 
 while True:
     for i in range(MAX):
