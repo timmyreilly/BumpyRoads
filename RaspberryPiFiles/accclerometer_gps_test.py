@@ -31,7 +31,7 @@ while True:
         
         colorInt = (int(x/10))
         print("colorInt=%d" % (x))
-        
+        time.sleep(0.2)
         if report.keys()[0] == 'epx':
             lat = float(report['lat'])
             lon = float(report['lon'])
