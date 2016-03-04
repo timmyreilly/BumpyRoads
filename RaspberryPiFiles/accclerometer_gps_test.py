@@ -29,8 +29,8 @@ while True:
         
         report = session.next()
         
-        colorInt = (int(x/10)
-        print('colorInt=%d' % (x))
+        colorInt = (int(x/10))
+        print("colorInt=%d" % (x))
         
         if report.keys()[0] == 'epx':
             lat = float(report['lat'])
@@ -44,7 +44,7 @@ while True:
             insert_or_replace_entity_from_pi_azure(table_service, i, entry, 'test', 'default')
             print("lat=%f\tlon=%f\ttime=%s" % (lat, lon, report['time']))
         else:
-            print('no gps %d' % (report.keys()[0]))
+            print('no gps' , report.keys()[0])
     
     
 
