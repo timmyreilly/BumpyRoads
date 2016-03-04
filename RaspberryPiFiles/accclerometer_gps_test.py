@@ -24,7 +24,7 @@ def get_normalized_number(lists, x, y, z):
     lists.pop()
     lists.insert(0, [x,y,z])
     average = 0 
-    return 
+    return 0 
 
 while True:
     for i in range(MAX):

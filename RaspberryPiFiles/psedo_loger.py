@@ -9,14 +9,8 @@ Collect random lat long and bumpiness rating
 
 Send to Azure Table storage 
 
+Send to table with trip name as entry 
+
 '''
 
-segment = Entity()
-segment.PartitionKey = 'default'
-segment.RowKey = '1'
-segment.latA = entry['latA']
-segment.longA = entry['longA']
-segment.latB = entry['latB']
-segment.longB = entry['longB']
-segment.colorKey = entry['color']
-
+def 

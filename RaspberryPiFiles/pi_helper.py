@@ -124,7 +124,7 @@ def insert_or_replace_entity_from_pi_azure(table_service, rowKey, entry, table_n
     '''
     segment = Entity()
     segment.PartitionKey = partitionKey
-    segment.RowKey = str(rowKey)
+    segment.RowKey = str(rowKey).zfill(8)
     segment.latA = str(entry['latA'])
     segment.longA = str(entry['longA'])
     segment.latB = str(entry['latB'])
