@@ -44,7 +44,19 @@ def get_table_list(table_service, max=10, table_name='test', partitionKey='defau
     print(x)
     return x 
 
+def create_table_if_doesnt_exist(table_name, table_service=connect_to_service()):
+    if does_table_exist(table_name):
+        return 'already exists'
+    else:
+        table_service.create_table(table_name)
+        return 'now it exists'
     
+def does_table_exist(table_name, table_service=connect_to_service()):
+    for i in table_service.query_tables():
+        if i.name == table_name:
+            return True
+    return False 
+
 def get_lat_long_random(x):
     list = []
     for i in range(0,x): 
@@ -175,7 +187,7 @@ def insert_entry_to_azure(table_service, rowKey, entry, table_name='test', parti
     table_service.insert_entity(table_name, segment)
     
     
-def create_table(name, table_service):
+def create_table(name, table_service=connect_to_service()):
     '''
     table_service = TableService(account_name='myaccount', account_key='mykey')
 
@@ -183,10 +195,10 @@ def create_table(name, table_service):
     '''
     table_service.create_table(name)
     
-def delete_entity(table_service, rowKey, table_name='test', partitionKey='default'):
+def delete_entity(rowKey, table_service=connect_to_service(), table_name='test', partitionKey='default'):
     table_service.delete_entity(table_name, partitionKey, rowKey)
 
-def delete_table(name):
-    table_service.delete_table('tasktable')
+def delete_table(name, table_service=connect_to_service()):
+    return table_service.delete_table(name)
     
 
