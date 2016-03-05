@@ -3,6 +3,8 @@
 
 from pi_helper import * 
 import azure 
+import spidev, time
+from gps import * 
 
 '''
 Collect random lat long and bumpiness rating
@@ -12,6 +14,17 @@ Send to Azure Table storage
 Send to table with trip name as entry 
 
 '''
+spi = spidev.SpiDev()
+spi.open(0,0)
+
+session = gps() 
+session.stream(WATCH_ENABLE|WATCH_NEWSTYLE)
+
+table_service=connect_to_service()
+
+oldLat = None
+oldLon = None 
+
 
 def analog_read(channel):
     r = spi.xfer2([1, (8 + channel) << 4, 0])
