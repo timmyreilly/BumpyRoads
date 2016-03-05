@@ -50,12 +50,26 @@ def create_table_if_doesnt_exist(table_name, table_service=connect_to_service())
     else:
         table_service.create_table(table_name)
         return 'now it exists'
+        
+def create_table_if_does_not_exist(table_name, table_service=connect_to_service()):
+    if does_table_exist_pi(table_name):
+        return 'already exists'
+    else:
+        table_service.create_table(table_name)
+        return 'now it exists'
     
 def does_table_exist(table_name, table_service=connect_to_service()):
     for i in table_service.query_tables():
         if i.name == table_name:
             return True
     return False 
+    
+def does_table_exist_pi(table_name, table_service=connect_to_service()):
+    for i in table_service.list_tables():
+        if i.name == table_name:
+            return True
+    return False 
+    
 
 def get_lat_long_random(x):
     list = []
