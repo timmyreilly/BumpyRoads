@@ -13,6 +13,11 @@ Send to table with trip name as entry
 
 '''
 
+def analog_read(channel):
+    r = spi.xfer2([1, (8 + channel) << 4, 0])
+    adc_out = ((r[1]&3) << 8) + r[2]
+    return adc_out
+
 table_name = raw_input("Enter table name: ")
 
 create_table_if_does_not_exist(table_name)
