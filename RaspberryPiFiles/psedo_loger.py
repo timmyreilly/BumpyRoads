@@ -24,7 +24,7 @@ table_service=connect_to_service()
 
 oldLat = None
 oldLon = None 
-
+i = 0 
 
 def analog_read(channel):
     r = spi.xfer2([1, (8 + channel) << 4, 0])
@@ -34,6 +34,7 @@ def analog_read(channel):
 table_name = raw_input("Enter table name: ")
 
 create_table_if_does_not_exist(table_name)
+
 
 while True: 
     x = analog_read(0)
@@ -46,7 +47,7 @@ while True:
     colorInt = (int(x/10))
     
     print("colorInt=%d" % (colorInt))
-    time.sleep(0.2)
+    
     if report.keys()[0] == 'epx':
         lat = float(report['lat'])
         lon = float(report['lon'])
@@ -57,6 +58,9 @@ while True:
         oldLat = lat 
         oldLon = lon 
         insert_or_replace_entity_from_pi_azure(table_service, i, entry, table_name, 'default')
+        i = i+1 
         print("lat=%f\tlon=%f\ttime=%s" % (lat, lon, report['time']))
+        time.sleep(0.5)
     else:
         print('no gps' , report.keys()[0])
+        time.sleep(1.0)

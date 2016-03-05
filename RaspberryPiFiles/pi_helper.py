@@ -131,7 +131,7 @@ def insert_or_replace_entity_to_azure(table_service, rowKey, entry, table_name='
     '''
     segment = Entity()
     segment.PartitionKey = partitionKey
-    segment.RowKey = str(rowKey)
+    segment.RowKey = str(rowKey).zfill(8)
     segment.latA = str(entry['latA'])
     segment.longA = str(entry['longA'])
     segment.latB = str(entry['latB'])
@@ -170,7 +170,7 @@ def update_entity_to_azure(table_service, rowKey, entry, table_name='test', part
     '''
     segment = Entity()
     segment.PartitionKey = partitionKey
-    segment.RowKey = str(rowKey)
+    segment.RowKey = str(rowKey).zfill(8)
     segment.latA = str(entry['latA'])
     segment.longA = str(entry['longA'])
     segment.latB = str(entry['latB'])
@@ -189,7 +189,7 @@ def insert_entry_to_azure(table_service, rowKey, entry, table_name='test', parti
     '''
     segment = Entity()
     segment.PartitionKey = partitionKey
-    segment.RowKey = str(rowKey)
+    segment.RowKey = str(rowKey).zfill(8)
     segment.latA = str(entry['latA'])
     segment.longA = str(entry['longA'])
     segment.latB = str(entry['latB'])
