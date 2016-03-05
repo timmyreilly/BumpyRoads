@@ -15,7 +15,7 @@ Send to table with trip name as entry
 
 table_name = raw_input("Enter table name: ")
 
-create_table_if_doesnt_exist(table_name)
+create_table_if_does_not_exist(table_name)
 
 while True: 
     x = analog_read(0)
