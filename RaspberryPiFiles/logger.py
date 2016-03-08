@@ -57,7 +57,7 @@ while True:
             oldLat = lat
             oldLon = lon 
         # entry = create_entry(oldLat, oldLon, lat, lon, colorInt)
-        entry = create_entry(oldLat, oldLon, lat, lon, colorInt, x, y, z)
+        entry = create_entry_with_raw_accel(oldLat, oldLon, lat, lon, colorInt, x, y, z)
         oldLat = lat 
         oldLon = lon 
         insert_or_replace_entity_from_pi_azure(table_service, i, entry, table_name, 'default')
