@@ -14,9 +14,20 @@ if token == None:
     from tokens import *  
     token = BING_API_KEY
 
+@app.route('/f')
+def all_tables():
+    tables = get_all_tables_list()
+    return render_template(
+        'all_routes.html',
+        tables = tables,
+        key = token 
+    )
+    
+@app.route('/get_all_routes')
+
 @app.route('/e')
 def bingerr():
-    data = get_data_from_table('tester')
+    data = get_data_from_table('lotsofdatafrompitest')
     jdata = json.dumps(data)
     return render_template(
         'binged.html',

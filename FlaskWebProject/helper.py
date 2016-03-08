@@ -12,7 +12,6 @@ if TABLE_STORAGE_KEY == None:
     
 def connect_to_service():
     table_service = TableService(account_name=STORAGE_ACCOUNT_NAME, account_key=TABLE_STORAGE_KEY)
-    print TableService
     return table_service 
 
 def get_table_entities(table_service=connect_to_service(), max=10, table_name='test', partitionKey='default'):
@@ -43,8 +42,23 @@ def get_data_from_table(table_name, table_service=connect_to_service()):
         t = (entity_list[i].latA, entity_list[i].longA, entity_list[i].latB, entity_list[i].longB, entity_list[i].colorKey, c[0], c[1], c[2])
         response.append(t)
         i += 1 
-    print response 
+    #print response 
     return response   
+
+def get_all_tables_list(table_service=connect_to_service()):
+    '''
+    Return data from all tables 
+    '''
+    routes_list = []
+    for i in table_service.query_tables():
+        print i.name
+        routes_list.append(json.dumps(get_data_from_table(i.name)))
+        
+    return routes_list
+        
+        
+    
+        
 
 def convert_color_key_to_rgb(colorKey):
     return {

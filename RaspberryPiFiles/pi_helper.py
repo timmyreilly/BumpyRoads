@@ -131,6 +131,18 @@ def create_entry(latA, lonA, latB, lonB, bumpiness):
     }
     return x 
 
+def create_entry_with_raw_accel(latA, lonA, latB, lonB, bumpiness, x, y, z):
+    x = {
+        'latA':latA,
+        'longA':lonA,
+        'latB':latB,
+        'longB':lonB,
+        'color': bumpiness,
+        'x': x,
+        'y': y,
+        'z': z 
+    }
+    return x 
 
 def insert_or_replace_entity_to_azure(table_service, rowKey, entry, table_name='test', partitionKey='default'):
     '''
@@ -142,11 +154,16 @@ def insert_or_replace_entity_to_azure(table_service, rowKey, entry, table_name='
     segment = Entity()
     segment.PartitionKey = partitionKey
     segment.RowKey = str(rowKey).zfill(8)
+    rowKey = str(rowKey).zfill(8)
     segment.latA = str(entry['latA'])
     segment.longA = str(entry['longA'])
     segment.latB = str(entry['latB'])
     segment.longB = str(entry['longB'])
     segment.colorKey = str(entry['color'])
+    if entry['x']:
+        segment.x = str(entry['x'])
+        segment.y = str(entry['y'])
+        segment.z = str(entry['z'])
 
     print segment
     table_service.insert_or_replace_entity(table_name, partitionKey, rowKey, segment) 
@@ -166,7 +183,11 @@ def insert_or_replace_entity_from_pi_azure(table_service, rowKey, entry, table_n
     segment.latB = str(entry['latB'])
     segment.longB = str(entry['longB'])
     segment.colorKey = str(entry['color'])
-
+    if entry['x']:
+        segment.x = str(entry['x'])
+        segment.y = str(entry['y'])
+        segment.z = str(entry['z'])
+        
     print segment
     table_service.insert_or_replace_entity(table_name, segment) 
        
@@ -207,7 +228,6 @@ def insert_entry_to_azure(table_service, rowKey, entry, table_name='test', parti
     segment.colorKey = str(entry['color'])
 
     print segment
-    #table_service.insert_or_replace_entity(table_name, segment)
     table_service.insert_entity(table_name, segment)
     
     
