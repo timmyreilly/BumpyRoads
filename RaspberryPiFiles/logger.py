@@ -32,6 +32,10 @@ def analog_read(channel):
     r = spi.xfer2([1, (8 + channel) << 4, 0])
     adc_out = ((r[1]&3) << 8) + r[2]
     return adc_out
+    
+print "current tables:"
+for i in table_service.list_tables():
+    print i.name 
 
 table_name = raw_input("Enter table name: ")
 
