@@ -34,7 +34,7 @@ while True:
     z = get_random_accel_data()
     print("X=%d\tY=%d\tZ=%d" % (x, y, z))
         
-    colorInt = x + y + z
+    colorInt = get_random_color_int()
     
     print("colorInt=%d" % (colorInt))
     
