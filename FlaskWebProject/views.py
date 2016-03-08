@@ -13,7 +13,16 @@ token = os.getenv('BING_MAP_TOKEN')
 if token == None:
     from tokens import *  
     token = BING_API_KEY
-    
+
+@app.route('/e')
+def bingerr():
+    data = get_data_from_table('tester')
+    jdata = json.dumps(data)
+    return render_template(
+        'binged.html',
+        data = jdata,
+        key=token
+    )   
     
 @app.route('/d')
 def binged():   

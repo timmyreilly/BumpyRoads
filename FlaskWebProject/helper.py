@@ -15,12 +15,12 @@ def connect_to_service():
     print TableService
     return table_service 
 
-def get_table_list(table_service=connect_to_service(), max=10, table_name='test', partitionKey='default'):
+def get_table_entities(table_service=connect_to_service(), max=10, table_name='test', partitionKey='default'):
     x = table_service.query_entities(table_name)
     #print(x)
     return x 
     
-def get_json_list(entity_list=get_table_list()):
+def get_json_list(entity_list=get_table_entities()):
     '''
     Takes azure table list and returns json list 
     '''
@@ -33,7 +33,18 @@ def get_json_list(entity_list=get_table_list()):
         i += 1 
     # print response 
     return response 
-    
+
+def get_data_from_table(table_name, table_service=connect_to_service()):
+    entity_list = table_service.query_entities(table_name)
+    i = 0 
+    response = []
+    for r in entity_list:
+        c = convert_color_key_to_rgb(int(entity_list[i].colorKey))
+        t = (entity_list[i].latA, entity_list[i].longA, entity_list[i].latB, entity_list[i].longB, entity_list[i].colorKey, c[0], c[1], c[2])
+        response.append(t)
+        i += 1 
+    print response 
+    return response   
 
 def convert_color_key_to_rgb(colorKey):
     return {
@@ -44,7 +55,7 @@ def convert_color_key_to_rgb(colorKey):
         4: [255, 255, 0],
         5: [255, 85, 0],
         6: [255, 0, 0],
-    }.get(colorKey, [100, 100, 100] )
+    }.get(colorKey, [255, 0, 0] )
 
 def get_data():
     d =[
