@@ -3,8 +3,8 @@
 
 from pi_helper import * 
 import azure 
-import spidev, time
-from gps import * 
+import time
+
 
 '''
 Collect random lat long and bumpiness rating
@@ -14,11 +14,6 @@ Send to Azure Table storage
 Send to table with trip name as entry 
 
 '''
-spi = spidev.SpiDev()
-spi.open(0,0)
-
-session = gps() 
-session.stream(WATCH_ENABLE|WATCH_NEWSTYLE)
 
 table_service=connect_to_service()
 
@@ -30,34 +25,32 @@ i = 0
 
 table_name = raw_input("Enter table name: ")
 
-create_table_if_does_not_exist(table_name)
+create_table_if_does_not_exist_windows(table_name)
 
 
 while True: 
-    x = analog_read(0)
-    y = analog_read(1)
-    z = analog_read(2)
+    x = get_random_accel_data()
+    y = get_random_accel_data()
+    z = get_random_accel_data()
     print("X=%d\tY=%d\tZ=%d" % (x, y, z))
-    
-    report = session.next()
-    
-    colorInt = (int(x/10))
+        
+    colorInt = x + y + z
     
     print("colorInt=%d" % (colorInt))
     
-    if report.keys()[0] == 'epx':
-        lat = float(report['lat'])
-        lon = float(report['lon'])
+    if True:
+        lat = get_random_lat()
+        lon = get_random_long()
         if oldLat == None:
             oldLat = lat
             oldLon = lon 
         entry = create_entry(oldLat, oldLon, lat, lon, colorInt)
         oldLat = lat 
         oldLon = lon 
-        insert_or_replace_entity_from_pi_azure(table_service, i, entry, table_name, 'default')
+        insert_or_replace_entity_to_azure(table_service, i, entry, table_name, 'default')
         i = i+1 
-        print("lat=%f\tlon=%f\ttime=%s" % (lat, lon, report['time']))
+        print("lat=%f\tlon=%f\ttime=%s" % (lat, lon, time.time()))
         time.sleep(0.5)
     else:
-        print('no gps' , report.keys()[0])
+        print('no gps')
         time.sleep(1.0)

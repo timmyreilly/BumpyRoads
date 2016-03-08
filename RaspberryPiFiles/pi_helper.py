@@ -25,6 +25,9 @@ def get_random_long():
 def get_random_color_list():
     return [random.randint(50,100), random.randint(50,150), random.randint(50,200), random.randint(100,200)]
 
+def get_random_accel_data():
+    return random.randint(0, 255)
+
 def get_random_color_int():
     return random.randint(0,7)
     
@@ -53,6 +56,13 @@ def create_table_if_doesnt_exist(table_name, table_service=connect_to_service())
         
 def create_table_if_does_not_exist(table_name, table_service=connect_to_service()):
     if does_table_exist_pi(table_name):
+        return 'already exists'
+    else:
+        table_service.create_table(table_name)
+        return 'now it exists'
+        
+def create_table_if_does_not_exist_windows(table_name, table_service=connect_to_service()):
+    if does_table_exist(table_name):
         return 'already exists'
     else:
         table_service.create_table(table_name)
