@@ -38,7 +38,7 @@ def onAccelerometerChanged(x, y, z, lastAccel):
     kAccelerometerNoiseAttenuation = 3.0 
     
     if ADAPTIVE_ACCEL_FILTER:
-        d = clamp(abs(norm(accelFilter[0], accelFilter[1], accelFilter[2]) - norm(x, y, z)) / kAccelerometerMinStep - 1.0, 0.0, 5.0)
+        d = clamp(abs(norm(accelFilter[0], accelFilter[1], accelFilter[2]) - norm(x, y, z)) / kAccelerometerMinStep - 1.0, 0.0, 2.0)
         alpha = d * filterConstant / kAccelerometerNoiseAttenuation + (1.0 - d) * filterConstant
         
     accelFilter[0] = (alpha * (accelFilter[0] + x - lastAccel[0]))
