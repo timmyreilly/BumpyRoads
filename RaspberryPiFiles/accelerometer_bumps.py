@@ -26,7 +26,7 @@ def clamp(v, min, max):
     else:
         return v 
 
-def onAccelerometerChanged(x, y, z):
+def onAccelerometerChanged(x, y, z, lastAccel):
     #high pass filter
     updateFreq = 10
     cutOffFreq = 0.9
@@ -59,5 +59,5 @@ while True:
     y = analog_read(1)
     z = analog_read(2)
     print(" NOT FILTERED? X=%d\tY=%d\tZ=%d" % (x, y, z))
-    onAccelerometerChanged(x, y, z)
+    onAccelerometerChanged(x, y, z, lastAccel)
     time.sleep(0.1)
