@@ -33,9 +33,11 @@ def analog_read(channel):
     adc_out = ((r[1]&3) << 8) + r[2]
     return adc_out
     
-print "current tables:"
+
 for j in table_service.list_tables():
     print j.name 
+
+print "^^ current tables ^^"
 
 table_name = raw_input("Enter table name: ")
 

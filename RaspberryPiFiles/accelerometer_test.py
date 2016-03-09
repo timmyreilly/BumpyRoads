@@ -12,5 +12,5 @@ while True:
     x = analog_read(0)
     y = analog_read(1)
     z = analog_read(2)
-    print("X=%d\tY=%d\tZ=%d" % (x, y, z))
+    
     time.sleep(0.1)
