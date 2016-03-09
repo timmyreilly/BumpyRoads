@@ -18,7 +18,7 @@ accelFilter = []
 def norm(x, y, z):
     return math.sqrt(x * x + y * y + z * z)
     
-def clamp(v min, max):
+def clamp(v, min, max):
     if v > max:
         return max 
     elif v < min: 
