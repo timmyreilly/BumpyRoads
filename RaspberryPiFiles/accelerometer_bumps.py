@@ -23,7 +23,7 @@ def clamp(v, min, max):
         return max 
     elif v < min: 
         return min 
-    else
+    else:
         return v 
 
 def onAccelerometerChanged(x, y, z):
