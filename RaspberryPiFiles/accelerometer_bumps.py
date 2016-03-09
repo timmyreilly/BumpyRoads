@@ -38,7 +38,7 @@ def onAccelerometerChanged(x, y, z, lastAccel):
     kAccelerometerNoiseAttenuation = 3.0 
     
     if ADAPTIVE_ACCEL_FILTER:
-        d = clamp(abs(norm(accelFilter[0], accelFilter[1], accelFilter[2]) - norm(x, y, z)) / kAccelerometerMinStep - 1.0, 0.0, 1.0)
+        d = clamp(abs(norm(accelFilter[0], accelFilter[1], accelFilter[2]) - norm(x, y, z)) / kAccelerometerMinStep - 1.0, 0.0, 5.0)
         alpha = d * filterConstant / kAccelerometerNoiseAttenuation + (1.0 - d) * filterConstant
         
     accelFilter[0] = (alpha * (accelFilter[0] + x - lastAccel[0]))
@@ -51,9 +51,6 @@ def onAccelerometerChanged(x, y, z, lastAccel):
     
     print("lastAccel ", lastAccel)
     print("accelFilter ", accelFilter)
-    if accelFilter[0] > 1:
-        print "HOLY POOP THATs a SHAKE"
-        #sys.exit("HOLY Poop")
         
     onFilteredAccelerometerChanged(accelFilter[0], accelFilter[1], accelFilter[2])
     
