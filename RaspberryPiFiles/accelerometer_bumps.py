@@ -12,7 +12,7 @@ def analog_read(channel):
     
     
 ADAPTIVE_ACCEL_FILTER = True 
-lastAccel = []
+lastAccel = [,,]
 accelFilter = [] 
 
 def norm(x, y, z):
