@@ -53,13 +53,14 @@ def onAccelerometerChanged(x, y, z, lastAccel):
     print("lastAccel ", lastAccel)
     print("accelFilter ", accelFilter)
     if accelFilter[0] > 1:
-        print "HOLY Poop"
+        print "HOLY Poopasdflksadflkjfdslkjlkjfdslkjlkjlkjlkjfdslkjfdslkjfdsalkjlkjfdslkjfdsalkjfdslkjlkjfdsalkjfdsalkj"
         #sys.exit("HOLY Poop")
         
     onFilteredAccelerometerChanged(accelFilter[0], accelFilter[1], accelFilter[2])
     
     
 def onFilteredAccelerometerChanged(x, y, z):
+    print type(x) 
     print(" FILTERED? X=%d\tY=%d\tZ=%d" % (x, y, z))
     
 while True:
