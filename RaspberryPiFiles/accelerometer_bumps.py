@@ -54,7 +54,7 @@ def onAccelerometerChanged(x, y, z, lastAccel):
     print("accelFilter ", accelFilter)
     if accelFilter[0] > 1:
         print "HOLY Poop"
-        sys.exit("HOLY Poop")
+        #sys.exit("HOLY Poop")
         
     onFilteredAccelerometerChanged(accelFilter[0], accelFilter[1], accelFilter[2])
     
