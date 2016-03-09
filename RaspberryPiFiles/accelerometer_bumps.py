@@ -12,8 +12,8 @@ def analog_read(channel):
     
     
 ADAPTIVE_ACCEL_FILTER = True 
-lastAccel = [,,]
-accelFilter = [] 
+lastAccel = [0,0,0]
+accelFilter = [0,0,0] 
 
 def norm(x, y, z):
     return math.sqrt(x * x + y * y + z * z)
