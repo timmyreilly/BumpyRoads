@@ -1,4 +1,4 @@
-import spidev, time, math 
+import spidev, time, math, sys
 
 spi = spidev.SpiDev()
 spi.open(0,0)
@@ -52,6 +52,10 @@ def onAccelerometerChanged(x, y, z, lastAccel):
     
     print("lastAccel ", lastAccel)
     print("accelFilter ", accelFilter)
+    if accelFilter[0] > 1:
+        print "HOLY Poop"
+        sys.exit("HOLY Poop")
+        
     onFilteredAccelerometerChanged(accelFilter[0], accelFilter[1], accelFilter[2])
     
     
