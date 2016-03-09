@@ -58,10 +58,17 @@ def onAccelerometerChanged(x, y, z, lastAccel):
     onFilteredAccelerometerChanged(accelFilter[0], accelFilter[1], accelFilter[2])
     
     
-def onFilteredAccelerometerChanged(x, y, z):
-    print type(x) 
+def onFilteredAccelerometerChanged(x, y, z): 
     print (x, y, z, "x y z")
-    print(" FILTERED? X=%d\tY=%d\tZ=%d" % (x, y, z))
+    if x > 1:
+        "#### X TOOK A BUMP ####"
+    
+    if y > 1: 
+        "#### Y TOOK A BUMP ####"
+        
+    if z > 1: 
+        "#### Z TOOK A BUMP ####"
+        
     
 while True:
     x = analog_read(0)
