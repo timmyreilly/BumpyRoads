@@ -38,7 +38,6 @@ def onAccelerometerChanged(x, y, z, lastAccel):
     kAccelerometerNoiseAttenuation = 3.0 
     
     if ADAPTIVE_ACCEL_FILTER:
-        print 'math' 
         d = clamp(abs(norm(accelFilter[0], accelFilter[1], accelFilter[2]) - norm(x, y, z)) / kAccelerometerMinStep - 1.0, 0.0, 1.0)
         alpha = d * filterConstant / kAccelerometerNoiseAttenuation + (1.0 - d) * filterConstant
         
@@ -61,6 +60,7 @@ def onAccelerometerChanged(x, y, z, lastAccel):
     
 def onFilteredAccelerometerChanged(x, y, z):
     print type(x) 
+    print (x, y, z, "x y z")
     print(" FILTERED? X=%d\tY=%d\tZ=%d" % (x, y, z))
     
 while True:
