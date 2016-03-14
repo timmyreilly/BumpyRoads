@@ -42,12 +42,18 @@ def onAccelerometerChanged(x, y, z, lastAccel):
     accelFilter[1] = (alpha * (accelFilter[1] + y - lastAccel[1]))
     accelFilter[2] = (alpha * (accelFilter[2] + z - lastAccel[2]))
     
+    
+    print "lastAccel ", lastAccel
+    print "x y z", x, y, z  
+    print "accelFilter ", accelFilter
+    print "filterConstant: ", filterConstant 
+    
+    
     lastAccel[0] = x
     lastAccel[1] = y 
     lastAccel[2] = z 
     
-    print("lastAccel ", lastAccel)
-    print("accelFilter ", accelFilter)
+    
         
     return onFilteredAccelerometerChanged(accelFilter[0], accelFilter[1], accelFilter[2])
     
