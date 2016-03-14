@@ -62,17 +62,22 @@ def onFilteredAccelerometerChanged(x, y, z):
     #print 'abs x: ', abs(x) 
     #print 'jus x: ', x 
     # print (x, y, z, "x y z")
-    if abs(x) > 2.0:
-        print "# X TOOK A BUMP # ", x 
+    x = abs(x) 
+    y = abs(y)
+    z = abs(z) 
+    
+    if x or y or z > 0.8: 
+        print "took a small bump"
         return 1 
-    elif abs(y) > 2.0: 
-        print "# Y TOOK A BUMP # ", y 
-        return 1   
-    elif abs(z) > 2.0: 
-        print "# Z TOOK A BUMP # ", z 
-        return 1 
-    else: 
+    elif x or y or z > 1:
+        print "took a medium bump"
+        return 2 
+    elif x or y or z > 2: 
+        print "took a large bump"
+        return 3 
+    else:
         return 0 
+        
     
         
 
