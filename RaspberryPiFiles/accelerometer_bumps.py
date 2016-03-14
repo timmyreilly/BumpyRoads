@@ -52,18 +52,32 @@ def onAccelerometerChanged(x, y, z, lastAccel):
     print("lastAccel ", lastAccel)
     print("accelFilter ", accelFilter)
         
-    onFilteredAccelerometerChanged(accelFilter[0], accelFilter[1], accelFilter[2])
+    return onFilteredAccelerometerChanged(accelFilter[0], accelFilter[1], accelFilter[2])
     
     
 def onFilteredAccelerometerChanged(x, y, z): 
     print (x, y, z, "x y z")
     if x > 1.0:
         print "#### X TOOK A BUMP ####" 
+        return 1 
     elif y > 1.0: 
-        print "#### Y TOOK A BUMP ####"    
+        print "#### Y TOOK A BUMP ####"  
+        return 1   
     elif z > 1.0: 
         print "#### Z TOOK A BUMP ####"
+        return 1 
+    
         
+
+def get_quarter_second_of_data(): 
+    for i in range(5)
+        x = analog_read(0)
+        y = analog_read(1)
+        z = analog_read(2)
+        sum += onAccelerometerChanged(x, y, z, lastAccel)
+        time.sleep(0.05)
+    return sum 
+    
     
 while True:
     x = analog_read(0)
@@ -72,3 +86,5 @@ while True:
     #print(" NOT FILTERED? X=%d\tY=%d\tZ=%d" % (x, y, z))
     onAccelerometerChanged(x, y, z, lastAccel)
     time.sleep(0.1)
+
+    
