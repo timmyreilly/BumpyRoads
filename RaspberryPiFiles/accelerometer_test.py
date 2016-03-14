@@ -63,6 +63,8 @@ def onFilteredAccelerometerChanged(x, y, z):
     elif z > 1.0: 
         print "#### Z TOOK A BUMP ####"
         return 1 
+    else: 
+        return 0 
     
         
 
