@@ -25,7 +25,7 @@ def clamp(v, min, max):
 
 def onAccelerometerChanged(x, y, z, lastAccel):
     #high pass filter
-    updateFreq = 10
+    updateFreq = 4
     cutOffFreq = 0.9
     RC = 1.0 / cutOffFreq
     dt = 1.0 / updateFreq
