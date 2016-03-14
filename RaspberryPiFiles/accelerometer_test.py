@@ -60,13 +60,13 @@ def onAccelerometerChanged(x, y, z, lastAccel):
     
 def onFilteredAccelerometerChanged(x, y, z): 
     # print (x, y, z, "x y z")
-    if x > 1.0:
+    if abs(x) > 15.0:
         print "# X TOOK A BUMP # ", x 
         return 1 
-    elif y > 1.0: 
+    elif abs(y) > 15.0: 
         print "# Y TOOK A BUMP # ", y 
         return 1   
-    elif z > 1.0: 
+    elif abs(z) > 15.0: 
         print "# Z TOOK A BUMP # ", z 
         return 1 
     else: 
