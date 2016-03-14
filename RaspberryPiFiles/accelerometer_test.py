@@ -65,6 +65,7 @@ def onFilteredAccelerometerChanged(x, y, z):
     x = abs(x) 
     y = abs(y)
     z = abs(z) 
+    print 'abs x y z: ', x, y, z 
     
     if x or y or z > 0.8: 
         print "took a small bump"
