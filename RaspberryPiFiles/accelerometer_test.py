@@ -74,7 +74,7 @@ def onFilteredAccelerometerChanged(x, y, z):
     if x > LARGE_BUMP or y > LARGE_BUMP or z > LARGE_BUMP:
         print "LARGE BUMP!", [x, y, z]
         return 3 
-    elif x > MED_BUMP or y > MED_BUMP or Z > MED_BUMP:
+    elif x > MED_BUMP or y > MED_BUMP or z > MED_BUMP:
         print "Medium Bump", [x, y, z]
         return 2 
     elif x > SMALL_BUMP or y > SMALL_BUMP or z > SMALL_BUMP:
