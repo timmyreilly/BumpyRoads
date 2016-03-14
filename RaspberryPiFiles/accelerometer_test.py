@@ -46,7 +46,7 @@ def onAccelerometerChanged(x, y, z, lastAccel):
     print "lastAccel ", lastAccel
     print "currxyz   ", [x, y, z]  
     print "accelFilter ", accelFilter
-    print "filterConstant: ", filterConstant 
+    # print "filterConstant: ", filterConstant 
     
     
     lastAccel[0] = x
@@ -59,8 +59,8 @@ def onAccelerometerChanged(x, y, z, lastAccel):
     
     
 def onFilteredAccelerometerChanged(x, y, z):
-    print 'abs x: ', abs(x) 
-    print 'jus x: ', x 
+    #print 'abs x: ', abs(x) 
+    #print 'jus x: ', x 
     # print (x, y, z, "x y z")
     if abs(x) > 2.0:
         print "# X TOOK A BUMP # ", x 
