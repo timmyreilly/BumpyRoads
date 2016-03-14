@@ -75,7 +75,7 @@ def get_quarter_second_of_data():
         x = analog_read(0)
         y = analog_read(1)
         z = analog_read(2)
-        sum += onAccelerometerChanged(x, y, z, lastAccel)
+        sum = sum + onAccelerometerChanged(x, y, z, lastAccel)
         time.sleep(0.05)
     return sum 
     
