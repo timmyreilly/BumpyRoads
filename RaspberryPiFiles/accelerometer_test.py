@@ -58,8 +58,9 @@ def onAccelerometerChanged(x, y, z, lastAccel):
     return onFilteredAccelerometerChanged(accelFilter[0], accelFilter[1], accelFilter[2])
     
     
-def onFilteredAccelerometerChanged(x, y, z): 
-    print abs(x, y, z)
+def onFilteredAccelerometerChanged(x, y, z):
+    print 'abs x: ', abs(x) 
+    print 'jus x: ', x 
     # print (x, y, z, "x y z")
     if abs(x) > 15.0:
         print "# X TOOK A BUMP # ", x 
