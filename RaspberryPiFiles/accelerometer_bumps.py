@@ -70,7 +70,7 @@ def onFilteredAccelerometerChanged(x, y, z):
         
 
 def get_quarter_second_of_data(): 
-    for i in range(5)
+    for i in range(5):
         x = analog_read(0)
         y = analog_read(1)
         z = analog_read(2)
