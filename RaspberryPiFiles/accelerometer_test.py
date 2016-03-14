@@ -7,10 +7,7 @@ def analog_read(channel):
     r = spi.xfer2([1, (8 + channel) << 4, 0])
     adc_out = ((r[1]&3) << 8) + r[2]
     return adc_out 
-    
-
-    
-    
+   
 ADAPTIVE_ACCEL_FILTER = True 
 lastAccel = [0,0,0]
 accelFilter = [0,0,0] 
@@ -70,12 +67,12 @@ def onFilteredAccelerometerChanged(x, y, z):
         
 
 def get_quarter_second_of_data(): 
-    sum = int(0) 
+    sum = 0 
     for i in range(5):
         x = analog_read(0)
         y = analog_read(1)
         z = analog_read(2)
-        sum = sum + onAccelerometerChanged(x, y, z, lastAccel)
+        sum = sum + int(onAccelerometerChanged(x, y, z, lastAccel)) 
         time.sleep(0.05)
     return sum 
     
