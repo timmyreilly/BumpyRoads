@@ -41,6 +41,7 @@ table_name = raw_input("Enter table name: ")
 
 create_table_if_does_not_exist(table_name)
 
+report = session.next() 
 
 while True: 
     if report.keys()[0] == 'epx':
