@@ -79,12 +79,12 @@ def get_quarter_second_of_data():
     return sum 
     
     
-while True:
-    x = analog_read(0)
-    y = analog_read(1)
-    z = analog_read(2)
-    #print(" NOT FILTERED? X=%d\tY=%d\tZ=%d" % (x, y, z))
-    onAccelerometerChanged(x, y, z, lastAccel)
-    time.sleep(0.1)
+# while True:
+#     x = analog_read(0)
+#     y = analog_read(1)
+#     z = analog_read(2)
+#     #print(" NOT FILTERED? X=%d\tY=%d\tZ=%d" % (x, y, z))
+#     onAccelerometerChanged(x, y, z, lastAccel)
+#     time.sleep(0.1)
 
     
