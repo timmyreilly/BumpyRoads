@@ -80,7 +80,7 @@ def get_quarter_second_of_data():
     
     
 while True:
-    sum = get_quarter_second_of_data()
-    print sum 
+    s = get_quarter_second_of_data()
+    print s 
 
     
