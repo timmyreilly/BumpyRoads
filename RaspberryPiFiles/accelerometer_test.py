@@ -12,9 +12,9 @@ ADAPTIVE_ACCEL_FILTER = False
 lastAccel = [0,0,0]
 accelFilter = [0,0,0] 
 
-SMALL_BUMP = 2.0
-MED_BUMP = 1.0 
-LARGE_BUMP = 2.0 
+SMALL_BUMP = 0.05
+MED_BUMP = 0.09 
+LARGE_BUMP = 0.1 
 
 def norm(x, y, z):
     return math.sqrt(x * x + y * y + z * z)
@@ -30,7 +30,6 @@ def clamp(v, min, max):
 def onAccelerometerChanged(x, y, z, lastAccel):
     #high pass filter
     updateFreq = 400 
-    # cutOffFreq = 0.9
     RC = 0.4 
     dt = 1.0 / updateFreq     
     alpha = dt / (dt + RC)
@@ -39,30 +38,20 @@ def onAccelerometerChanged(x, y, z, lastAccel):
     accelFilter[1] = (alpha * (accelFilter[1] + y - lastAccel[1]))
     accelFilter[2] = (alpha * (accelFilter[2] + z - lastAccel[2]))
     
-    
     print "lastAccel ", lastAccel
     print "currxyz   ", [x, y, z]  
-    # print "accelFilter ", accelFilter
-    # print "filterConstant: ", filterConstant 
-    
     
     lastAccel[0] = x
     lastAccel[1] = y 
-    lastAccel[2] = z 
-    
-    
-        
+    lastAccel[2] = z
+            
     return onFilteredAccelerometerChanged(accelFilter[0], accelFilter[1], accelFilter[2])
     
     
 def onFilteredAccelerometerChanged(x, y, z):
-    #print 'abs x: ', abs(x) 
-    #print 'jus x: ', x 
-    # print (x, y, z, "x y z")
-    # x = abs(x) 
-    # y = abs(y)
-    # z = abs(z) 
-    # print 'abs x y z: ', x, y, z 
+    x = abs(x) 
+    y = abs(y)
+    z = abs(z) 
     
     if x > LARGE_BUMP or y > LARGE_BUMP or z > LARGE_BUMP:
         print "LARGE BUMP!", [x, y, z]
@@ -77,9 +66,6 @@ def onFilteredAccelerometerChanged(x, y, z):
         print "no bump", [x, y, z]
         return 0 
     
-        
-    
-        
 
 def get_quarter_second_of_data(): 
     sum = 0 
