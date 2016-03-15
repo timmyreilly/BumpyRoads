@@ -13,8 +13,8 @@ lastAccel = [0,0,0]
 accelFilter = [0,0,0] 
 
 SMALL_BUMP = 0.05
-MED_BUMP = 0.1 
-LARGE_BUMP = 0.25 
+MED_BUMP = 0.25
+LARGE_BUMP = 0.45 
 
 def norm(x, y, z):
     return math.sqrt(x * x + y * y + z * z)
