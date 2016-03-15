@@ -12,9 +12,10 @@ ADAPTIVE_ACCEL_FILTER = False
 lastAccel = [0,0,0]
 accelFilter = [0,0,0] 
 
-SMALL_BUMP = 0.01 
-MED_BUMP = 0.05
-LARGE_BUMP = 0.15 
+TINY_BUMP = 0.05 
+SMALL_BUMP = 0.1 
+MED_BUMP = 0.5
+LARGE_BUMP = 0.9  
 
 def norm(x, y, z):
     return math.sqrt(x * x + y * y + z * z)
@@ -55,13 +56,16 @@ def onFilteredAccelerometerChanged(x, y, z):
     
     if x > LARGE_BUMP or y > LARGE_BUMP or z > LARGE_BUMP:
         print "LARGE BUMP!", [x, y, z]
-        return 3 
+        return 5 
     elif x > MED_BUMP or y > MED_BUMP or z > MED_BUMP:
         print "Medium Bump", [x, y, z]
-        return 2 
+        return 3  
     elif x > SMALL_BUMP or y > SMALL_BUMP or z > SMALL_BUMP:
         print "small bump", [x, y, z]
-        return 1 
+        return 2
+    elif x > TINY_BUMP or y > TINY_BUMP or z > TINY_BUMP:
+        print "tiny bump", [x, y, z]
+        return 1
     else:
         print "no bump", [x, y, z]
         return 0 
