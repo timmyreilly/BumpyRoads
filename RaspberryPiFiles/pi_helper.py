@@ -168,7 +168,7 @@ def insert_or_replace_entity_to_azure(table_service, rowKey, entry, table_name='
     print segment
     table_service.insert_or_replace_entity(table_name, partitionKey, rowKey, segment) 
     
-def insert_or_replace_entity_from_pi_azure(table_service, rowKey, entry, table_name='test', partitionKey='default'):
+def insert_or_replace_entity_from_pi_azure_raw_accel(table_service, rowKey, entry, table_name='test', partitionKey='default'):
     '''
     takes table service
     
@@ -190,7 +190,26 @@ def insert_or_replace_entity_from_pi_azure(table_service, rowKey, entry, table_n
         
     print segment
     table_service.insert_or_replace_entity(table_name, segment) 
-       
+
+def insert_or_replace_entity_from_pi_azure(table_service, rowKey, entry, table_name='test', partitionKey='default'):
+    '''
+    takes table service
+    
+    Takes a list 
+    Uploads to azure table storage 
+    '''
+    segment = Entity()
+    segment.PartitionKey = partitionKey
+    segment.RowKey = str(rowKey).zfill(8)
+    segment.latA = str(entry['latA'])
+    segment.longA = str(entry['longA'])
+    segment.latB = str(entry['latB'])
+    segment.longB = str(entry['longB'])
+    segment.colorKey = str(entry['color'])
+        
+    print segment
+    table_service.insert_or_replace_entity(table_name, segment) 
+          
     
 def update_entity_to_azure(table_service, rowKey, entry, table_name='test', partitionKey='default'):
     '''
