@@ -8,11 +8,11 @@ def analog_read(channel):
     adc_out = ((r[1]&3) << 8) + r[2]
     return adc_out 
    
-ADAPTIVE_ACCEL_FILTER = True 
+ADAPTIVE_ACCEL_FILTER = False 
 lastAccel = [0,0,0]
 accelFilter = [0,0,0] 
 
-SMALL_BUMP = 0.8
+SMALL_BUMP = 2.0
 MED_BUMP = 1.0 
 LARGE_BUMP = 2.0 
 
@@ -30,10 +30,10 @@ def clamp(v, min, max):
 def onAccelerometerChanged(x, y, z, lastAccel):
     #high pass filter
     updateFreq = 400 
-    cutOffFreq = 0.9
-    RC = 1.0 / cutOffFreq
+    # cutOffFreq = 0.9
+    RC = 0.3 
     dt = 1.0 / updateFreq
-    filterConstant = RC / (dt + RC)
+    filterConstant = dt / (dt + RC)
     alpha = filterConstant
     kAccelerometerMinStep = 0.033 
     kAccelerometerNoiseAttenuation = 3.0 
@@ -69,7 +69,7 @@ def onFilteredAccelerometerChanged(x, y, z):
     # x = abs(x) 
     # y = abs(y)
     # z = abs(z) 
-    print 'abs x y z: ', x, y, z 
+    # print 'abs x y z: ', x, y, z 
     
     if x > LARGE_BUMP or y > LARGE_BUMP or z > LARGE_BUMP:
         print "LARGE BUMP!", [x, y, z]
