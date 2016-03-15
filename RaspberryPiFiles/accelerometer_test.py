@@ -31,17 +31,10 @@ def onAccelerometerChanged(x, y, z, lastAccel):
     #high pass filter
     updateFreq = 400 
     # cutOffFreq = 0.9
-    RC = 0.3 
-    dt = 1.0 / updateFreq
-    filterConstant = dt / (dt + RC)
-    alpha = filterConstant
-    kAccelerometerMinStep = 0.033 
-    kAccelerometerNoiseAttenuation = 3.0 
-    
-    if ADAPTIVE_ACCEL_FILTER:
-        d = clamp(abs(norm(accelFilter[0], accelFilter[1], accelFilter[2]) - norm(x, y, z)) / kAccelerometerMinStep - 1.0, 0.0, 2.0)
-        alpha = d * filterConstant / kAccelerometerNoiseAttenuation + (1.0 - d) * filterConstant
-        
+    RC = 0.4 
+    dt = 1.0 / updateFreq     
+    alpha = dt / (dt + RC)
+       
     accelFilter[0] = (alpha * (accelFilter[0] + x - lastAccel[0]))
     accelFilter[1] = (alpha * (accelFilter[1] + y - lastAccel[1]))
     accelFilter[2] = (alpha * (accelFilter[2] + z - lastAccel[2]))
