@@ -81,9 +81,9 @@ def get_quarter_second_of_data():
         time.sleep(0.05)
     return sum 
     
-    
-while True:
-    s = get_quarter_second_of_data()
-    print s 
+if __name__ == "__main__":  
+    while True:
+        s = get_quarter_second_of_data()
+        print s 
 
     
