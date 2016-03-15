@@ -4,7 +4,7 @@
 # or local stoge. 
 
 from pi_helper import * 
-from accelerometer_bumps import * 
+from accelerometer import * 
 import azure 
 import spidev, time, math, sys 
 from gps import * 
