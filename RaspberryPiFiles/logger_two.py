@@ -50,7 +50,7 @@ while True:
         b_average = 0
         while True:
             b_index = get_quarter_second_of_data() # returns number between 1 - 10 
-            b_average = b_index/i 
+            b_average = b_index/j  
             j = j + 1 
             report = session.next() 
             if report.keys()[0] == 'epx':
