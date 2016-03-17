@@ -33,6 +33,8 @@ if __name__ == '__main__':
             print 'latitude      ', gpsd.fix.latitude
             print 'longitude     ', gpsd.fix.longitude
             
+            time.sleep(2)
+            
         
     except (KeyboardInterrupt, SystemExit):
         print "\nKilling Thread..."
