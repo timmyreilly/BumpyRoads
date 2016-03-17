@@ -207,7 +207,7 @@ def insert_or_replace_entity_from_pi_azure(table_service, rowKey, entry, table_n
     segment.longB = str(entry['longB'])
     segment.colorKey = str(entry['color'])
         
-    print segment
+    print segment.colorKey 
     table_service.insert_or_replace_entity(table_name, segment) 
           
     

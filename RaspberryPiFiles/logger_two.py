@@ -65,9 +65,8 @@ while True:
         oldLat = lat 
         oldLon = lon 
         i = i + 1 
-        print("lat=%f\tlon=%f\ttime=%s" % (lat, lon, report['time']))
+        # print("lat=%f\tlon=%f\ttime=%s" % (lat, lon, report['time']))
     else: 
-        time.sleep(0.2)
         print('no gps', report.keys())
         report = session.next() 
 
