@@ -17,7 +17,7 @@ class GpsPoller(threading.Thread):
         
     def run(self):
         try:
-            while True:
+            while self.running:
                 self.current_value = self.session.next() 
         except StopIteration:
             pass 
