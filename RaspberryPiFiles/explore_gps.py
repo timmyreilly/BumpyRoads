@@ -21,6 +21,7 @@ class GpsPoller(threading.Thread):
     global gpsd
     while gpsp.running:
       gpsd.next() #this will continue to loop and grab EACH set of gpsd info to clear the buffer
+      self.current_value = gpsd.next() 
  
 if __name__ == '__main__':
   gpsp = GpsPoller() # create the thread
@@ -32,7 +33,7 @@ if __name__ == '__main__':
  
       os.system('clear')
  
-      print
+      print gpsp.current_value 
       print ' GPS reading'
       print '----------------------------------------'
       print 'latitude    ' , gpsd.fix.latitude
