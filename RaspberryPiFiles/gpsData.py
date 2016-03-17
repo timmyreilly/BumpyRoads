@@ -1,6 +1,5 @@
-from explore_gps import GpsPoller 
+from explore_gps import *  
 
-global gpsp 
             
 if __name__ == '__main__':
   gpsp = GpsPoller() # create the thread
