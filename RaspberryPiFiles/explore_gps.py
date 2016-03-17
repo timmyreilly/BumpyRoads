@@ -14,7 +14,7 @@ class GpsPoller(threading.Thread):
     threading.Thread.__init__(self)
     global gpsd #bring it in scope
     gpsd = gps(mode=WATCH_ENABLE) #starting the stream of info
-    self.current_value = None
+    self.current_value = gpsd.next() 
     self.running = True #setting the thread running to true
  
   def run(self):
