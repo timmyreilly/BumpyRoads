@@ -8,7 +8,7 @@ class GpsPoller(threading.Thread):
         
         threading.Thread.__init__(self)
         self.session = gps() 
-        session.stream(WATCH_ENABLE|WATCH_NEWSTYLE)
+        self.session.stream(WATCH_ENABLE|WATCH_NEWSTYLE)
         self.current_value = None
         
     def get_current_value(self):
