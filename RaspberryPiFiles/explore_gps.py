@@ -1,29 +1,27 @@
 import gps, os, time
+import threading 
 
-session = gps.gps()
+class GpsPoller(threading.Thread):
 
-while 1:
-    os.system('clear')
-    session.query('admosy') 
-    # a = altitude, d = date/time, m=mode,  
-    # o=postion/fix, s=status, y=satellites
-
-    print
-    print ' GPS reading'
-    print '----------------------------------------'
-    print 'latitude    ' , session.fix.latitude
-    print 'longitude   ' , session.fix.longitude
-    print 'time utc    ' , session.utc, session.fix.time
-    print 'altitude    ' , session.fix.altitude
-    print 'eph         ' , session.fix.eph
-    print 'epv         ' , session.fix.epv
-    print 'ept         ' , session.fix.ept
-    print 'speed       ' , session.fix.speed
-    print 'climb       ' , session.fix.climb
+    def __init__(self)
+        threader.Thread.__init__(self)
+        self.session = gps(mode=WATCH_ENABLE)
+        self.current_value = None
+        
+    def get_current_value(self):
+        return self.current_value
+        
+    def run(self):
+        try:
+            while True:
+                self.current_value = session.next()
+        except StopIteration:
+            pass 
+            
+if __name__ == '__main__':
+    gpsd = GpsPoller()
+    gpsp.start()
     
-    print
-    print ' Satellites (total of', len(session.satellites) , ' in view)'
-    for i in session.satellites:
-        print '\t', i
-
-    time.sleep(3)
+    while 1:
+        time.sleep(3)
+        print gpsp.get_current_value() 
