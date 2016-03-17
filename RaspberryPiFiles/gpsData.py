@@ -7,12 +7,13 @@ if __name__ == '__main__':
         while True:
             os.system('clear')
             report = gpsp.get_current_value()
-            try: 
-                if report.keys()[0] == 'epx':
-                    print report 
-                time.sleep(.5)
-            except(AttributeError, KeyError):
-                pass 
+            print report 
+            # try: 
+            #     if report.keys()[0] == 'epx':
+            #         print report 
+            #     time.sleep(.5)
+            # except(AttributeError, KeyError):
+            #     pass 
             
     except(KeyboardInterrupt, SystemExit):
         print "\nKilling Thread.."
