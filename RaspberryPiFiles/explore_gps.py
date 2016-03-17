@@ -5,8 +5,10 @@ from gps import *
 class GpsPoller(threading.Thread):
 
     def __init__(self):
+        
         threading.Thread.__init__(self)
-        self.session = gps.stream(WATCH_ENABLE|WATCH_NEWSTYLE)
+        self.session = gps() 
+        session.stream(WATCH_ENABLE|WATCH_NEWSTYLE)
         self.current_value = None
         
     def get_current_value(self):
