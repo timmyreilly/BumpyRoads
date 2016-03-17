@@ -1,30 +1,5 @@
-import os, time, threading 
-from gps import * 
+from explore_gps import GpsPoller 
 
-
-gpsd = None 
-
-os.system('clear')
-
-class GpsPoller(threading.Thread):
-    
-    def __init__(self):
-        threading.Thread.__init__(self)
-        global gpsd 
-        gpsd = gps(mode=WATCH_ENABLE)
-        self.current_value = None 
-        self.running = True 
-        self.report = None 
-        
-    def run(self):
-        global gpsd 
-        while gpsd.running:
-            self.report = gpsd.next() 
-            if report.keys() == 'epx':
-                self.current_value = self.report 
-            
-    def get_current_value(self):
-        return self.current_value
             
 if __name__ == '__main__':
     gpsp = GpsPoller() 
@@ -32,8 +7,7 @@ if __name__ == '__main__':
         gpsp.start()
         while True:
             os.system('clear')
-            
-            print gpsp.get_current_value() 
+         
             
             
             print 
@@ -54,7 +28,7 @@ if __name__ == '__main__':
             print
             print 'sats        ' , gpsd.satellites
             
-            time.sleep(2) 
+            time.sleep(1) 
 
         
     except (KeyboardInterrupt, SystemExit):
