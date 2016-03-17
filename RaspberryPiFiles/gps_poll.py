@@ -11,14 +11,16 @@ class GpsPoller(threading.Thread):
         self.session = gps(mode=WATCH_ENABLE)
         self.current_value = None 
         
-        def run(self):
-            try:
-                while gpsp.running:
-                    self.current_value = self.session.next() 
-            except StopIteration:
-                pass 
+    def get_current_value(self):
+            return self.current_value
+        
+    def run(self):
+        try:
+            while gpsp.running:
+                self.current_value = self.session.next() 
+        except StopIteration:
+            pass 
                 
                 
-        def get_current_value(self):
-            return self.current_value 
+         
         
