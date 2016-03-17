@@ -26,5 +26,5 @@ if __name__ == '__main__':
     gpsp.start()
     
     while 1:
-        time.sleep(3)
+        time.sleep(.5)
         print gpsp.get_current_value() 
