@@ -3,7 +3,7 @@ import threading
 
 class GpsPoller(threading.Thread):
 
-    def __init__(self)
+    def __init__(self):
         threader.Thread.__init__(self)
         self.session = gps(mode=WATCH_ENABLE)
         self.current_value = None
