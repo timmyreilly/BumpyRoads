@@ -16,7 +16,7 @@ class GpsPoller(threading.Thread):
         
     def time_to_exit():
         exitApp = True 
-        os._exit()
+        print 'exitApp now True'
         
     def run(self):
         while not self.exitApp: 
