@@ -18,7 +18,10 @@ class GpsPoller(threading.Thread):
     def run(self):
         global gpsd 
         while gpsd.running:
-            gpsd.next() 
+            self.current_value = gpsd.next() 
+            
+    def get_current_value(self):
+        return self.current_value
             
 if __name__ == '__main__':
     gpsp = GpsPoller() 
@@ -27,7 +30,7 @@ if __name__ == '__main__':
         while True:
             os.system('clear')
             
-            print gpsd 
+            print gpsp.get_current_value() 
             
             
             print 
