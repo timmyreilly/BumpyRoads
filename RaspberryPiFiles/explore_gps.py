@@ -1,5 +1,6 @@
-import gps, os, time
-import threading 
+import os, time
+import threading
+from gps import *  
 
 class GpsPoller(threading.Thread):
 
