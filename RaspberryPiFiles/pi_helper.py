@@ -135,7 +135,7 @@ def create_entry_with_raw_accel(latA, lonA, latB, lonB, bumpiness, x, y, z):
     x = {
         'latA':latA,
         'longA':lonA,
-        'latB':latB,
+        'latB':lbatB,
         'longB':lonB,
         'color': bumpiness,
         'x': x,
