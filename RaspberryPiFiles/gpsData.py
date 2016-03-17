@@ -9,7 +9,7 @@ if __name__ == '__main__':
         while True:
             os.system('clear')
             report = gpsp.get_current_value()
-            print report 
+            # print report 
             try: 
                 if report.keys()[0] == 'epx':
                     print report['lat']
