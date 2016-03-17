@@ -14,11 +14,14 @@ class GpsPoller(threading.Thread):
         gpsd = gps(mode=WATCH_ENABLE)
         self.current_value = None 
         self.running = True 
+        self.report = None 
         
     def run(self):
         global gpsd 
         while gpsd.running:
-            self.current_value = gpsd.next() 
+            self.report = gpsd.next() 
+            if report.keys() == 'epx':
+                self.current_value = self.report 
             
     def get_current_value(self):
         return self.current_value
