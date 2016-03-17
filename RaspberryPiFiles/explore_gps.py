@@ -22,7 +22,7 @@ class GpsPoller(threading.Thread):
             
 if __name__ == '__main__':
     gpsd = GpsPoller()
-    gpsp.start()
+    gpsp.run()
     
     while 1:
         time.sleep(3)
