@@ -10,7 +10,7 @@ if __name__ == '__main__':
             if report.keys()[0] == 'epx':
                 print report 
             time.sleep(.5)
-    except (KeyboardInterrupt, SystemExit):
+    except(KeyboardInterrupt, SystemExit):
         print "\nKilling Thread.."
         gpsp.running = False 
         gpsp.join()
