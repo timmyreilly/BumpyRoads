@@ -36,7 +36,12 @@ if __name__ == '__main__':
       os.system('clear')
  
       print gpsp.current_value 
-      print 'gpadp current Vale     ', gpsp.current_value['lat']
+      try: 
+        print 'gpadp current Vale     ', gpsp.current_value['lat']
+      except(KeyError):
+        pass 
+        
+      
       print ' GPS reading'
       print '----------------------------------------'
       print 'latitude    ' , gpsd.fix.latitude
