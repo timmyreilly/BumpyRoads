@@ -25,15 +25,14 @@ if __name__ == '__main__':
     try: 
         gpsp.start()
         while True:
-        
-        os.system('clear')
-        
-        print 
-        print 'GPS reading'
-        print '-----------------------'
-        print 'latitude      ', gpsd.fix.latitude
-        print 'longitude     ', gpsd.fix.longitude
-        
+            os.system('clear')
+            
+            print 
+            print 'GPS reading'
+            print '-----------------------'
+            print 'latitude      ', gpsd.fix.latitude
+            print 'longitude     ', gpsd.fix.longitude
+            
         
     except (KeyboardInterrupt, SystemExit):
         print "\nKilling Thread..."
