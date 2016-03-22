@@ -48,7 +48,7 @@ if __name__ == '__main__':
             #os.system('clear')
             report = gpsp.get_current_value()
             try:
-                if report.keys()[0] == 'epv':
+                if report.keys()[0] == 'epv' or report.keys()[0] == 'epx':
                     j = 1
                     b_index = 0 
                     b_average = 0 
@@ -57,7 +57,7 @@ if __name__ == '__main__':
                         b_average = b_index/j 
                         j = j + 1 
                         report = gpsp.get_current_value()
-                        if report.keys()[0] == 'epv':
+                        if report.keys()[0] == 'epv' or report.keys()[0] == 'epx':
                             break 
                     lat = float(report['lat'])
                     lon = float(report['lat'])
