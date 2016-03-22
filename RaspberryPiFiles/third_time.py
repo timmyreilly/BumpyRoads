@@ -74,8 +74,9 @@ if __name__ == '__main__':
             except(AttributeError, KeyError):
                 pass        
     except(KeyboardInterrupt, SystemExit):
-        print "\nKilling Thread.."
         gpsp.running = False 
         gpsp.join()
+        print "\nKilling Thread.."
+        
         
     print "Done.\nExiting."
