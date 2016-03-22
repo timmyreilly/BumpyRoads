@@ -57,7 +57,7 @@ if __name__ == '__main__':
                         b_average = b_index/j 
                         j = j + 1 
                         report = gpsp.get_current_value()
-                        if report.keys[0] == 'epv':
+                        if report.keys()[0] == 'epv':
                             break 
                     lat = float(report['lat'])
                     lon = float(report['lat'])
