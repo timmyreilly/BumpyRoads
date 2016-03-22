@@ -65,6 +65,7 @@ if __name__ == '__main__':
                         oldLat = lat 
                         oldLon = lon 
                     entry = create_entry(oldLat, oldLon, lat, lon, b_average)
+                    print entry 
                     insert_or_replace_entity_from_pi_azure(table_service, i, entry, table_name, 'default')
                     oldLat = lat 
                     oldLon = lon 

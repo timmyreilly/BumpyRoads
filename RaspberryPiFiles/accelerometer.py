@@ -39,8 +39,8 @@ def onAccelerometerChanged(x, y, z, lastAccel):
     accelFilter[1] = (alpha * (accelFilter[1] + y - lastAccel[1]))
     accelFilter[2] = (alpha * (accelFilter[2] + z - lastAccel[2]))
     
-    print "lastAccel ", lastAccel
-    print "currxyz   ", [x, y, z]  
+    #print "lastAccel ", lastAccel
+    #print "currxyz   ", [x, y, z]  
     
     lastAccel[0] = x
     lastAccel[1] = y 
@@ -55,19 +55,19 @@ def onFilteredAccelerometerChanged(x, y, z):
     z = abs(z) 
     
     if x > LARGE_BUMP or y > LARGE_BUMP or z > LARGE_BUMP:
-        print "LARGE BUMP!", [x, y, z]
+        #print "LARGE BUMP!", [x, y, z]
         return 5 
     elif x > MED_BUMP or y > MED_BUMP or z > MED_BUMP:
-        print "Medium Bump", [x, y, z]
+        #print "Medium Bump", [x, y, z]
         return 3  
     elif x > SMALL_BUMP or y > SMALL_BUMP or z > SMALL_BUMP:
-        print "small bump", [x, y, z]
+        #print "small bump", [x, y, z]
         return 2
     elif x > TINY_BUMP or y > TINY_BUMP or z > TINY_BUMP:
-        print "tiny bump", [x, y, z]
+        #print "tiny bump", [x, y, z]
         return 1
     else:
-        print "no bump", [x, y, z]
+        #print "no bump", [x, y, z]
         return 0 
     
 
