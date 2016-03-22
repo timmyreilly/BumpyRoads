@@ -71,9 +71,9 @@ if __name__ == '__main__':
                     i = i + 1 
                 else:
                     print('no gps right meow', report.keys())
-            except(KeyboardInterrupt, SystemExit):
-                print "\nKilling Thread.."
-                gpsp.running = False 
-                gpsp.join()
-                
-            print "Done.\nExiting."
+    except(KeyboardInterrupt, SystemExit):
+        print "\nKilling Thread.."
+        gpsp.running = False 
+        gpsp.join()
+        
+    print "Done.\nExiting."
