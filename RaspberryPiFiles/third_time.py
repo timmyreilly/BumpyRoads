@@ -45,7 +45,7 @@ if __name__ == '__main__':
     try: 
         gpsp.start()
         while True: 
-            os.system('clear')
+            #os.system('clear')
             report = gpsp.get_current_value()
             try:
                 if report.keys()[0] == 'epx':
