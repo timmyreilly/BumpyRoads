@@ -1,7 +1,5 @@
 from gps_poll import *
 
-
-
 if __name__ == '__main__':
     gpsp = GpsPoller()
     try: 
