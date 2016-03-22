@@ -71,6 +71,8 @@ if __name__ == '__main__':
                     i = i + 1 
                 else:
                     print('no gps right meow', report.keys())
+            except(AttributeError, KeyError):
+                pass        
     except(KeyboardInterrupt, SystemExit):
         print "\nKilling Thread.."
         gpsp.running = False 
