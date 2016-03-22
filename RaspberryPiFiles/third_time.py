@@ -76,5 +76,4 @@ if __name__ == '__main__':
                 gpsp.running = False 
                 gpsp.join()
                 
-            print "Done.\nExiting." 
-         
+            print "Done.\nExiting."
