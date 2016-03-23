@@ -60,7 +60,7 @@ if __name__ == '__main__':
                         if report.keys()[0] == 'epv' or report.keys()[0] == 'epx':
                             break 
                     lat = float(report['lat'])
-                    lon = float(report['lat'])
+                    lon = float(report['lon'])
                     if oldLat == None: 
                         oldLat = lat 
                         oldLon = lon 
