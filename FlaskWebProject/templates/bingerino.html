@@ -1,105 +1,46 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html>
-   <head>
-      <title></title>
-      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
 
-      <script type="text/javascript" src="http://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0"></script>
+{% block title %}Mapped{% endblock %}
+
+{% block page_content %}
+<script type="text/javascript" src="http://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0"></script>
 
       <script type="text/javascript">
-
-          var map = null;
-
-
+         var map = null;
          function GetMap()
          {
+             
+            var y = JSON.parse('{{ data|safe }}');
             // Initialize the map
+            
             map = new Microsoft.Maps.Map(document.getElementById("mapDiv"),{
                 credentials:"{{ key }}",
-                center: new Microsoft.Maps.Location(37.767695,-122.445832), 
-                zoom: 13
+                center: new Microsoft.Maps.Location(y[0][0],y[0][1]), 
+                zoom: 15,
+                mapTypeId: Microsoft.Maps.MapTypeId.road,
                 }); 
-            
-           //console.log('{{ data|tojson|safe }}');
-           var y = JSON.parse('{{ data|tojson|safe }}');
-           var x = y[0]; 
-           
+              
            console.log(y);
-           console.log(x);
            
-           for (i in x){
-               console.log(i);
+           for( index = 0; index < y.length; index++ ){
+               lOne = new Microsoft.Maps.Location(y[index][0], y[index][1]);
+               lTwo = new Microsoft.Maps.Location(y[index][2], y[index][3]);
+               //console.log(lOne);
+               var lineV = new Array(lOne, lTwo);
+               //console.log(y[index][4])
+               var pLine = new Microsoft.Maps.Polyline(lineV, {
+                   strokeColor: new Microsoft.Maps.Color(100, y[index][5], y[index][6], y[index][7]),
+                   strokeThickness: 5
+               });
+               map.entities.push(pLine)
            }
-           
-           
-        //    {% for item in y %}
-        //         console.log('woot');
-        //    {% endfor %}
-        //    
-        //    {% for item in data %}
-        //         var dotA = new Microsoft.Maps.Location(item[0], item[1]);
-        //         var dotB = new Microsoft.Maps.Location(item[2], item[3]);
-        //         
-        //         var lineVert = new Array(dotA, dotB);
-        //         
-        //         color = item['color']
-        //         
-        //         var liner = new Microsoft.Maps.Polyline(lineVert,{
-        //             strokeColor:new Microsoft.Maps.Color(color[0], color[1], color[2], color[3]),
-        //             strokeThickness:2 
-        //         })
-        //     {% endfor %}
-        //    
-        //    console.log(x);
-        //    console.log(x['list_a'][0]);
-        //    console.log(x['list_a'][1]);
-        //     
-        //     var bluedota = new Microsoft.Maps.Location(x['list_a'][0], x['list_a'][1]);
-        //     var bluedotb = new Microsoft.Maps.Location(x['list_b'][0], x['list_b'][1]);
-        //     //var bluedotc = new Microsoft.Maps.Location(37.775111,-122.443911);
-        //     
-        //     var lineVert = new Array(bluedota, bluedotb);
-        //     
-        //     console.log(x['color']);
-        //     
-        //     color = x['color'];
-        //     
-        //     var linetwo = new Microsoft.Maps.Polyline(lineVert,{
-        //         strokeColor:new Microsoft.Maps.Color(color[0], color[1], color[2], color[3]),
-        //         strokeThickness:5
-        //     });
-        //     
-        //     map.entities.push(linetwo);
-
-            // Create the locations
-            
-            
-            var location1 = new Microsoft.Maps.Location(37.767111,-122.445811);
-            var location2 = new Microsoft.Maps.Location(37.775111,-122.443911);
-            var location3 = new Microsoft.Maps.Location(37.784111,-122.398511);
-            var location4 = new Microsoft.Maps.Location(37.792111, -122.403611);
-            var location5 = new Microsoft.Maps.Location(37.792111, -122.416611);
-
-
-            // Create a polyline
-            var lineVertices = new Array(location1, location2, location3, location4, location5);
-            var line = new Microsoft.Maps.Polyline(lineVertices,{
-                strokeColor:new Microsoft.Maps.Color(200, 100, 0, 100), 
-                strokeThickness:2
-                });
-
-            // Add the polyline to the map
-            map.entities.push(line);
-            
-            
 
          }
-
-
       </script>
    </head>
    <body onload="GetMap();">
       <div id='mapDiv' style="position:relative; width:700px; height:700px;"></div>
    </body>
-</html>
-
+{{ wtf.quick_form(form) }}
+{% endblock %}

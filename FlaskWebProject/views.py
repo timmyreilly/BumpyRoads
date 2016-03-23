@@ -3,7 +3,10 @@ Routes and views for the flask application.
 """
 
 from datetime import datetime
-from flask import render_template, Response 
+from flask import render_template, Response, session, redirect, url_for  
+from flask.ext.wtf import Form
+from wtforms import StringField, SubmitField
+from wtforms.validators import Required
 from FlaskWebProject import app
 from helper import *  
 import os
@@ -13,21 +16,32 @@ token = os.getenv('BING_MAP_TOKEN')
 if token == None:
     from tokens import *  
     token = BING_API_KEY
+    
+class RouteForm(Form):
+    route_name = StringField('What route?', validators=[Required()])
+    submit = SubmitField('Submit')
 
-@app.route('/f')
-def all_tables():
-    tables = get_all_tables_list()
+@app.route('/f', methods=['GET', 'POST'])
+def bingerrino():
+    data = get_data_from_table(session['route_name'])
+    jdata = json.dumps(data)
+    form = RouteForm()
+    if form.validate_on_submit():
+        route = session.get('route')
+        session['route_name'] = form.route_name.data
+        return redirect(url_for('bingerrino'))
     return render_template(
-        'all_routes.html',
-        tables = tables,
-        key = token 
+        'bingerino.html',
+        data = jdata,
+        key=token,
+        form=form,
+        route=session.get('route_name')
     )
     
-@app.route('/get_all_routes')
 
 @app.route('/e')
 def bingerr():
-    data = get_data_from_table('yarrr')
+    data = get_data_from_table(session['route_name'])
     jdata = json.dumps(data)
     return render_template(
         'binged.html',
@@ -79,16 +93,15 @@ def bingtrial():
         key=token)
 
 
-@app.route('/')
-@app.route('/home')
-def home():
-    """Renders the home page."""
-    return render_template(
-        'index.html',
-        title='Home Page',
-        info=token[1:6],
-        year=datetime.now().year,
-    )
+@app.route('/', methods=['GET', 'POST'])
+def index():
+    form = RouteForm()
+    if form.validate_on_submit():
+        route = session.get('route')
+        session['route_name'] = form.route_name.data
+        return redirect(url_for('bingerrino'))
+    return render_template('index.html', form=form, route=session.get('route_name'))
+
     
 @app.route('/t')
 def trial():

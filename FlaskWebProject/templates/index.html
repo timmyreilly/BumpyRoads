@@ -1,16 +1,11 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ title }} - My Flask Application</title>
-    <link rel="stylesheet" type="text/css" href="/static/content/site.css" />
-</head>
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
 
-<body>
-    <h1>{{ title }}</h1>
-    <p> Welcome to python on Azure</p>
-    <p> {{ info }} is part of a token</p>
-    
-</body>
+{% block title %}BumpyRoads{% endblock %}
 
+{% block page_content %}
+<div class="page-header">
+    <h1>Hello, {% if route %}{{ route }}{% else %}Stranger{% endif %}!</h1>
+</div>
+{{ wtf.quick_form(form) }}
+{% endblock %}

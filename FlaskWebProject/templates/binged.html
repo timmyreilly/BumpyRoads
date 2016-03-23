@@ -7,10 +7,7 @@
       <script type="text/javascript" src="http://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0"></script>
 
       <script type="text/javascript">
-
-          var map = null;
-
-
+         var map = null;
          function GetMap()
          {
              
@@ -23,10 +20,7 @@
                 zoom: 15,
                 mapTypeId: Microsoft.Maps.MapTypeId.road,
                 }); 
-            
-           
-           
-           
+              
            console.log(y);
            
            for( index = 0; index < y.length; index++ ){
@@ -43,12 +37,11 @@
            }
 
          }
-
-
       </script>
    </head>
    <body onload="GetMap();">
       <div id='mapDiv' style="position:relative; width:700px; height:700px;"></div>
    </body>
 </html>
+
 
