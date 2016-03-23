@@ -37,7 +37,7 @@ if __name__ == '__main__':
                             break
                     lat = float(report['lat'])
                     lon = float(report['lon'])
-                    if oldLat = None:
+                    if oldLat == None:
                         oldLat = lat
                         oldLon = lon 
                     entry = azure_table.create_entry(oldLat, oldLon, lat, lon, b_average)
