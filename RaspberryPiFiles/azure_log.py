@@ -42,7 +42,7 @@ if __name__ == '__main__':
                         oldLon = lon 
                     entry = azure_table.create_entry(oldLat, oldLon, lat, lon, b_average)
                     print entry 
-                    azure_table.insert_or_replace_entity_to_azure(i, entry, table_name, 'default')
+                    azure_table.insert_or_replace_entity_to_azure(i, entry, table_name)
                     oldLat = lat 
                     oldLon = lon 
                     i = i + 1 
