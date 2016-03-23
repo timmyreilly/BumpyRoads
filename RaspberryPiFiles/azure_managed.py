@@ -39,7 +39,7 @@ class az(object):
         if os.name == 'nt':
             self.table_service.insert_or_replace_entity(t_name, self.default_partition, str(rowKey).zfill(8), segment)
         else:
-            table_service.insert_or_replace_entity(t_name, segment) 
+            self.table_service.insert_or_replace_entity(t_name, segment) 
             
     def create_table(self, name):
         return self.table_service.create_table(name) 
