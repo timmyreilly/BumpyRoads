@@ -18,7 +18,7 @@ class az(object):
         self.table_service = TableService(account_name=self.STORAGE_NAME, account_key=self.TABLE_STORAGE_KEY)
         #create_table_if_does_not_exists(self.default_table_name)
         
-    def insert_or_replace_entity_to_azure(self, rowKey, entry, table_name=DEFAULT_TABLE):
+    def insert_or_replace_entity_to_azure(self, rowKey, entry, t_name=DEFAULT_TABLE):
         '''
         takes table service
         
@@ -37,9 +37,9 @@ class az(object):
         #print segment.colorKey 
         
         if os.name == 'nt':
-            self.table_service.insert_or_replace_entity(table_name, self.default_partition, str(rowKey).zfill(8), segment)
+            self.table_service.insert_or_replace_entity(t_name, self.default_partition, str(rowKey).zfill(8), segment)
         else:
-            table_service.insert_or_replace_entity(table_name, segment) 
+            table_service.insert_or_replace_entity(t_name, segment) 
             
     def create_table(self, name):
         return self.table_service.create_table(name) 
