@@ -27,7 +27,7 @@ def all_tables():
 
 @app.route('/e')
 def bingerr():
-    data = get_data_from_table('outsidethree')
+    data = get_data_from_table('yarrr')
     jdata = json.dumps(data)
     return render_template(
         'binged.html',
