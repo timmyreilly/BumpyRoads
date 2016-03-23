@@ -10,6 +10,7 @@ if TABLE_STORAGE_KEY == None:
     TABLE_STORAGE_KEY = TABLE_STORAGE_ACCESS_KEY
     STORAGE_NAME = STORAGE_ACCOUNT_NAME
 
+#implemented in azure_managed
 def connect_to_service():
     table_service = TableService(account_name=STORAGE_ACCOUNT_NAME, account_key=TABLE_STORAGE_KEY)
     print TableService
@@ -41,7 +42,8 @@ def clear_table(max=10, table_service=connect_to_service(), table_name='test', p
     for i in range(max):
         print i 
         table_service.delete_entity(table_name, partitionKey, i)
-    
+
+#implemented in azure_managed    
 def get_table_list(table_service, max=10, table_name='test', partitionKey='default'):
     x = table_service.query_entities(table_name)
     print(x)
@@ -54,26 +56,30 @@ def create_table_if_doesnt_exist(table_name, table_service=connect_to_service())
         table_service.create_table(table_name)
         return 'now it exists'
         
+#implemented in azure_managed
 def create_table_if_does_not_exist(table_name, table_service=connect_to_service()):
     if does_table_exist_pi(table_name):
         return 'already exists'
     else:
         table_service.create_table(table_name)
         return 'now it exists'
-        
+
+#implemented in azure_managed        
 def create_table_if_does_not_exist_windows(table_name, table_service=connect_to_service()):
     if does_table_exist(table_name):
         return 'already exists'
     else:
         table_service.create_table(table_name)
         return 'now it exists'
-    
+
+#implemented in azure_managed    
 def does_table_exist(table_name, table_service=connect_to_service()):
     for i in table_service.query_tables():
         if i.name == table_name:
             return True
     return False 
-    
+
+#implemented in azure_managed    
 def does_table_exist_pi(table_name, table_service=connect_to_service()):
     for i in table_service.list_tables():
         if i.name == table_name:
@@ -191,6 +197,7 @@ def insert_or_replace_entity_from_pi_azure_raw_accel(table_service, rowKey, entr
     print segment
     table_service.insert_or_replace_entity(table_name, segment) 
 
+#implemented in azure_managed
 def insert_or_replace_entity_from_pi_azure(table_service, rowKey, entry, table_name='test', partitionKey='default'):
     '''
     takes table service
@@ -207,10 +214,11 @@ def insert_or_replace_entity_from_pi_azure(table_service, rowKey, entry, table_n
     segment.longB = str(entry['longB'])
     segment.colorKey = str(entry['color'])
         
-    print segment.colorKey 
+    #print segment.colorKey 
+    
     table_service.insert_or_replace_entity(table_name, segment) 
           
-    
+#implemented in azure_managed   
 def update_entity_to_azure(table_service, rowKey, entry, table_name='test', partitionKey='default'):
     '''
     takes table service
@@ -249,7 +257,7 @@ def insert_entry_to_azure(table_service, rowKey, entry, table_name='test', parti
     print segment
     table_service.insert_entity(table_name, segment)
     
-    
+#implemented in azure_managed    
 def create_table(name, table_service=connect_to_service()):
     '''
     table_service = TableService(account_name='myaccount', account_key='mykey')
@@ -257,10 +265,12 @@ def create_table(name, table_service=connect_to_service()):
     table_service.create_table('tasktable')
     '''
     table_service.create_table(name)
-    
+
+#implemented in azure_managed    
 def delete_entity(rowKey, table_service=connect_to_service(), table_name='test', partitionKey='default'):
     table_service.delete_entity(table_name, partitionKey, rowKey)
 
+#implemented in azure_managed
 def delete_table(name, table_service=connect_to_service()):
     return table_service.delete_table(name)
     
