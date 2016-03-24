@@ -38,7 +38,8 @@ def get_data_from_table(table_name, table_service=connect_to_service()):
     i = 0 
     response = []
     for r in entity_list:
-        c = convert_color_key_to_rgb(int(entity_list[i].colorKey))
+        c = smart_color_key(int(entity_list[i].colorKey))
+        #print c 
         t = (entity_list[i].latA, entity_list[i].longA, entity_list[i].latB, entity_list[i].longB, entity_list[i].colorKey, c[0], c[1], c[2])
         response.append(t)
         i += 1 
@@ -57,7 +58,12 @@ def get_all_tables_list(table_service=connect_to_service()):
     return routes_list
         
         
-    
+def smart_color_key(colorKey):
+    red = (255 * colorKey) / 25
+    green = (255 * (25 - colorKey)) / 25
+    blue = 0 
+    return [red, green, blue]
+        
         
 
 def convert_color_key_to_rgb(colorKey):
