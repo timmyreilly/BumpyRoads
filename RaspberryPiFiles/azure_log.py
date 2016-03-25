@@ -46,6 +46,7 @@ if __name__ == '__main__':
                     oldLat = lat 
                     oldLon = lon 
                     i = i + 1 
+                    time.sleep(0.5)
                 else:
                     print('no gps right meow', report.keys())
             except(AttributeError, KeyError):
